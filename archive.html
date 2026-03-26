@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ARCHIVE_LOG // TERMINAL_CORE</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Space+Mono&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="sidebar-section">
+        <div class="sidebar-brand">
+          <div class="sidebar-icon-box">
+            <span class="material-symbols-outlined" style="color: var(--primary);">terminal</span>
+          </div>
+          <div>
+            <h2 class="sidebar-title">CORE_V1.0</h2>
+            <p class="sidebar-status">STATUS: ONLINE</p>
+          </div>
+        </div>
+
+        <nav class="side-nav">
+          <a class="side-nav-link" href="index.html">
+            <span class="material-symbols-outlined">home</span>
+            <span>root</span>
+          </a>
+          <a class="side-nav-link" href="#">
+            <span class="material-symbols-outlined">folder_special</span>
+            <span>root/projects</span>
+          </a>
+          <a class="side-nav-link" href="teaching.html">
+            <span class="material-symbols-outlined">school</span>
+            <span>root/teaching</span>
+          </a>
+          <a class="side-nav-link" href="stack.html">
+            <span class="material-symbols-outlined">terminal</span>
+            <span>root/stack</span>
+          </a>
+          <a class="side-nav-link active" href="archive.html">
+            <span class="material-symbols-outlined">inventory_2</span>
+            <span>root/archive</span>
+          </a>
+          <a class="side-nav-link" href="contact.html">
+            <span class="material-symbols-outlined">alternate_email</span>
+            <span>root/contact</span>
+          </a>
+        </nav>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="branch-box">
+          <p class="branch-label">Current Branch</p>
+          <p class="branch-value">main*</p>
+        </div>
+      </div>
+    </aside>
+
+    <header class="topbar">
+      <div class="topbar-left">
+        <span class="topbar-title">TERMINAL_CORE</span>
+        <span class="topbar-divider"></span>
+        <span class="topbar-location">LOC: 44.2619° N, 88.4154° W</span>
+      </div>
+
+      <div class="topbar-right">
+        <div class="search-box">
+          <span class="material-symbols-outlined" style="font-size: 18px; color: var(--outline);">search</span>
+          <input class="search-input" placeholder="SEARCH_LOGS..." type="text" />
+        </div>
+
+        <div class="topbar-icons">
+          <span class="material-symbols-outlined icon-btn">terminal</span>
+          <span class="material-symbols-outlined icon-btn">settings_input_component</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="archive-main grid-bg">
+      <div class="archive-overlay"></div>
+
+      <section class="archive-shell">
+        <div class="archive-hero">
+          <div class="archive-hero-meta">
+            <div class="status-row">
+              <span class="status-dot"></span>
+              <span class="status-text">ARCHIVE_STREAM_READY</span>
+            </div>
+            <div class="archive-hero-divider"></div>
+          </div>
+          <h1 class="archive-title">
+            <span class="hero-line-wrap"><span class="hero-line hero-line--1">ARCHIVE_<span class="archive-title-accent">LOG</span></span></span>
+          </h1>
+          <p class="archive-subtitle">Field notes on engineering, teaching, debugging, and building intentional software systems.</p>
+        </div>
+
+        <div class="archive-grid">
+          <section class="archive-feed">
+            <article class="archive-post anim-fade-up" style="--anim-delay: 0.05s;">
+              <div class="archive-post-head">
+                <span class="archive-post-date">2026-03-18</span>
+                <span class="archive-post-tag">ENGINEERING_LOG</span>
+              </div>
+              <h2 class="archive-post-title"><a href="blog-post.html" class="archive-post-link">Designing a Zero-Guesswork Debug Pipeline</a></h2>
+              <p class="archive-post-excerpt">A practical workflow for shrinking time-to-fix by making logs readable, observable, and structurally consistent across environments.</p>
+              <div class="archive-post-foot">
+                <span class="archive-post-meta">READ_TIME: 6m</span>
+                <a href="blog-post.html" class="archive-post-btn">Read Entry</a>
+              </div>
+            </article>
+
+            <article class="archive-post anim-fade-up" style="--anim-delay: 0.14s;">
+              <div class="archive-post-head">
+                <span class="archive-post-date">2026-03-06</span>
+                <span class="archive-post-tag">TEACHING_NOTE</span>
+              </div>
+              <h2 class="archive-post-title">How I Explain Event Loops Without Hand-Waving</h2>
+              <p class="archive-post-excerpt">The lesson structure I use to make asynchronous behavior feel concrete: timeline boards, queue simulation, and repeatable lab patterns.</p>
+              <div class="archive-post-foot">
+                <span class="archive-post-meta">READ_TIME: 8m</span>
+                <button class="archive-post-btn">Read Entry</button>
+              </div>
+            </article>
+
+            <article class="archive-post anim-fade-up" style="--anim-delay: 0.23s;">
+              <div class="archive-post-head">
+                <span class="archive-post-date">2026-02-27</span>
+                <span class="archive-post-tag">BUILD_SYSTEM</span>
+              </div>
+              <h2 class="archive-post-title">Astro as a Foundation for Fast, Clear Personal Sites</h2>
+              <p class="archive-post-excerpt">Why I moved to Astro for this site, what improved in authoring speed, and where component islands actually simplify maintenance.</p>
+              <div class="archive-post-foot">
+                <span class="archive-post-meta">READ_TIME: 5m</span>
+                <button class="archive-post-btn">Read Entry</button>
+              </div>
+            </article>
+          </section>
+
+          <aside class="archive-side anim-fade-right" style="--anim-delay: 0.18s;">
+            <div class="archive-side-card">
+              <h3 class="archive-side-title">Channels</h3>
+              <ul class="archive-side-list">
+                <li>ENGINEERING_LOG</li>
+                <li>TEACHING_NOTE</li>
+                <li>BUILD_SYSTEM</li>
+                <li>UI_UX_PATTERNS</li>
+              </ul>
+            </div>
+
+            <div class="archive-side-card">
+              <h3 class="archive-side-title">Now Logging</h3>
+              <p class="archive-side-text">Drafting entries on practical tooling, performance-minded frontend architecture, and teaching patterns that scale.</p>
+            </div>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer class="bottombar">
+      <div class="bottombar-left">
+        <div class="bottombar-item status">
+          <span class="material-symbols-outlined" style="font-size: 14px;">south_east</span>
+          <span style="font-weight: 700;">STATUS: ONLINE</span>
+        </div>
+        <div class="bottombar-item">
+          <span class="material-symbols-outlined" style="font-size: 14px;">description</span>
+          <span>PAGE: /root/archive</span>
+        </div>
+      </div>
+
+      <div class="bottombar-right">
+        <div class="bottombar-item">
+          <span class="material-symbols-outlined" style="font-size: 14px;">memory</span>
+          <span>STACK: ASTRO</span>
+        </div>
+        <div class="bottombar-time">14:23:02 UTC</div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="clock.js"></script>
+</body>
+</html>

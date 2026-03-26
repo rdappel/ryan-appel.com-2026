@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CORE_V1.0 // RYAN APPEL</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Space+Mono&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="sidebar-section">
+        <div class="sidebar-brand">
+          <div class="sidebar-icon-box">
+            <span class="material-symbols-outlined" style="color: var(--primary);">terminal</span>
+          </div>
+          <div>
+            <h2 class="sidebar-title">CORE_V1.0</h2>
+            <p class="sidebar-status">STATUS: ONLINE</p>
+          </div>
+        </div>
+
+        <nav class="side-nav">
+          <a class="side-nav-link active" href="#">
+            <span class="material-symbols-outlined">home</span>
+            <span>root</span>
+          </a>
+          <a class="side-nav-link" href="#">
+            <span class="material-symbols-outlined">folder_special</span>
+            <span>root/projects</span>
+          </a>
+          <a class="side-nav-link" href="teaching.html">
+            <span class="material-symbols-outlined">school</span>
+            <span>root/teaching</span>
+          </a>
+          <a class="side-nav-link" href="stack.html">
+            <span class="material-symbols-outlined">terminal</span>
+            <span>root/stack</span>
+          </a>
+          <a class="side-nav-link" href="archive.html">
+            <span class="material-symbols-outlined">inventory_2</span>
+            <span>root/archive</span>
+          </a>
+          <a class="side-nav-link" href="contact.html">
+            <span class="material-symbols-outlined">alternate_email</span>
+            <span>root/contact</span>
+          </a>
+        </nav>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="branch-box">
+          <p class="branch-label">Current Branch</p>
+          <p class="branch-value">main*</p>
+        </div>
+      </div>
+    </aside>
+
+    <header class="topbar">
+      <div class="topbar-left">
+        <span class="topbar-title">TERMINAL_CORE</span>
+        <span class="topbar-divider"></span>
+        <span class="topbar-location">LOC: 44.2619° N, 88.4154° W</span>
+      </div>
+
+      <div class="topbar-right">
+        <div class="search-box">
+          <span class="material-symbols-outlined" style="font-size: 18px; color: var(--outline);">search</span>
+          <input class="search-input" placeholder="SEARCH_FILES..." type="text" />
+        </div>
+
+        <div class="topbar-icons">
+          <span class="material-symbols-outlined icon-btn">terminal</span>
+          <span class="material-symbols-outlined icon-btn">settings_input_component</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="main-canvas grid-bg">
+      <div class="mesh-layer">
+        <div class="mesh-overlay code-mesh-overlay"></div>
+        <div class="mesh-image-wrap">
+          <img
+            class="mesh-image"
+            src="background.png"
+            alt="Abstract digital mesh"
+          />
+        </div>
+        <div class="accent-vertical"></div>
+        <div class="accent-horizontal"></div>
+      </div>
+
+      <section class="hero">
+        <div class="hero-status">
+          <div class="status-row">
+            <span class="status-dot"></span>
+            <span class="status-text">System Initialization Complete</span>
+          </div>
+
+          <h1 class="hero-title">
+            <span class="hero-line-wrap"><span class="hero-line hero-line--1">CORE_<span class="glow-sm" style="color: var(--primary);">V1.0</span></span></span><br />
+            <span class="hero-line-wrap"><span class="hero-line hero-title-small hero-line--2">RYAN APPEL</span></span>
+          </h1>
+        </div>
+
+        <div class="hero-grid">
+          <div>
+            <p class="hero-copy anim-fade-up" style="--anim-delay: 0.55s">
+              Fullstack Developer. Programming Teacher.
+              <span class="hero-copy-strong">Builder of Digital Worlds.</span>
+              Building robust systems through technical precision and intentional design.
+            </p>
+
+            <div class="hero-actions anim-fade-up" style="--anim-delay: 0.72s; justify-content: center;">
+              <button class="btn-secondary">View Source</button>
+            </div>
+          </div>
+
+          <div class="metadata-col anim-fade-right" style="--anim-delay: 0.6s">
+            <div class="metadata-panel">
+              <div class="metadata-header">
+                <span class="metadata-title">Metadata Panel</span>
+                <div class="metadata-lights">
+                  <div class="light light-error"></div>
+                  <div class="light light-ok"></div>
+                </div>
+              </div>
+
+              <div class="metadata-list">
+                <div class="metadata-row">
+                  <span class="metadata-key">LOCATION:</span>
+                  <span class="metadata-value secondary">Appleton, WI, USA</span>
+                </div>
+                <div class="metadata-row">
+                  <span class="metadata-key">STACK:</span>
+                  <span class="metadata-value">Astro</span>
+                </div>
+                <div class="metadata-row">
+                  <span class="metadata-key">UPTIME:</span>
+                  <span class="metadata-value dim">99.9%</span>
+                </div>
+                <div class="metadata-row">
+                  <span class="metadata-key">EXPERIENCE:</span>
+                  <span class="metadata-value neutral">25+ Years</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="grid-fragments">
+        <div class="fragment"></div>
+        <div class="fragment-offset"></div>
+      </div>
+    </main>
+
+    <footer class="bottombar">
+      <div class="bottombar-left">
+        <div class="bottombar-item status">
+          <span class="material-symbols-outlined" style="font-size: 14px;">south_east</span>
+          <span style="font-weight: 700;">STATUS: ONLINE</span>
+        </div>
+        <div class="bottombar-item">
+          <span class="material-symbols-outlined" style="font-size: 14px;">description</span>
+          <span>PAGE: /root</span>
+        </div>
+      </div>
+
+      <div class="bottombar-right">
+        <div class="bottombar-item">
+          <span class="material-symbols-outlined" style="font-size: 14px;">memory</span>
+          <span>STACK: ASTRO</span>
+        </div>
+        <div class="bottombar-time">14:23:02 UTC</div>
+      </div>
+    </footer>
+  </div>
+  <script src="clock.js"></script>
+</body>
+</html>
