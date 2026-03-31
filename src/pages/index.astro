@@ -1,0 +1,84 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="CORE_V1.0 // RYAN APPEL" pageName="root">
+	<main class="main-canvas grid-bg">
+		<div class="mesh-layer">
+			<div class="mesh-overlay code-mesh-overlay"></div>
+			<div class="mesh-image-wrap">
+				<img
+					class="mesh-image"
+					src="/background.png"
+					alt="Abstract digital mesh"
+				/>
+			</div>
+			<div class="accent-vertical"></div>
+			<div class="accent-horizontal"></div>
+		</div>
+
+		<section class="hero">
+			<div class="hero-status">
+				<div class="status-row">
+					<span class="status-dot"></span>
+					<span class="status-text">System Initialization Complete</span>
+				</div>
+
+				<h1 class="hero-title">
+					<span class="hero-line-wrap"><span class="hero-line hero-line--1">RYAN-APPEL<span class="glow-sm" style="color: var(--primary);">.COM</span></span></span><br />
+					<span class="hero-line-wrap"><span class="hero-line hero-title-small hero-line--2"><span class="glow-sm" style="color: var(--primary);">// CREATIVE</span>_TECHNOLOGIST</span></span>
+				</h1>
+			</div>
+
+			<div class="hero-grid">
+				<div>
+					<p class="hero-copy anim-fade-up" style="--anim-delay: 0.55s">
+						Fullstack Developer. Programming Teacher.
+						<span class="hero-copy-strong">Builder of Digital Worlds.</span>
+						Building robust systems through technical precision and intentional design.
+					</p>
+
+					<div class="hero-actions anim-fade-up" style="--anim-delay: 0.72s; justify-content: center;">
+						<a class="btn-secondary" href="https://github.com/rdappel/ryan-appel.com-2026" target="_blank" rel="noopener noreferrer">View Source</a>
+					</div>
+				</div>
+
+				<div class="metadata-col anim-fade-right" style="--anim-delay: 0.6s">
+					<div class="metadata-panel">
+						<div class="metadata-header">
+							<span class="metadata-title">Metadata Panel</span>
+							<div class="metadata-lights">
+								<div class="light light-error"></div>
+								<div class="light light-ok"></div>
+							</div>
+						</div>
+
+						<div class="metadata-list">
+							<div class="metadata-row">
+								<span class="metadata-key">LOCATION:</span>
+								<span class="metadata-value secondary">Appleton, WI, USA</span>
+							</div>
+							<div class="metadata-row">
+								<span class="metadata-key">STACK:</span>
+								<span class="metadata-value">Astro</span>
+							</div>
+							<div class="metadata-row">
+								<span class="metadata-key">UPTIME:</span>
+								<span class="metadata-value dim">99.9%</span>
+							</div>
+							<div class="metadata-row">
+								<span class="metadata-key">EXPERIENCE:</span>
+								<span class="metadata-value neutral">25+ Years</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<div class="grid-fragments">
+			<div class="fragment"></div>
+			<div class="fragment-offset"></div>
+		</div>
+	</main>
+</Layout>

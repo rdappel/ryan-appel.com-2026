@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CORE_V1.0 // RYAN APPEL</title>
+  <title>DEBUG_PIPELINE // ARCHIVE_LOG</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -33,11 +33,11 @@
         </div>
 
         <nav class="side-nav">
-          <a class="side-nav-link active" href="#">
+          <a class="side-nav-link" href="index.html">
             <span class="material-symbols-outlined">home</span>
             <span>root</span>
           </a>
-          <a class="side-nav-link" href="#">
+          <a class="side-nav-link" href="projects.html">
             <span class="material-symbols-outlined">folder_special</span>
             <span>root/projects</span>
           </a>
@@ -49,7 +49,7 @@
             <span class="material-symbols-outlined">terminal</span>
             <span>root/stack</span>
           </a>
-          <a class="side-nav-link" href="archive.html">
+          <a class="side-nav-link active" href="archive.html">
             <span class="material-symbols-outlined">inventory_2</span>
             <span>root/archive</span>
           </a>
@@ -78,7 +78,7 @@
       <div class="topbar-right">
         <div class="search-box">
           <span class="material-symbols-outlined" style="font-size: 18px; color: var(--outline);">search</span>
-          <input class="search-input" placeholder="SEARCH_FILES..." type="text" />
+          <input class="search-input" placeholder="SEARCH_ARTICLE..." type="text" />
         </div>
 
         <div class="topbar-icons">
@@ -88,83 +88,82 @@
       </div>
     </header>
 
-    <main class="main-canvas grid-bg">
-      <div class="mesh-layer">
-        <div class="mesh-overlay code-mesh-overlay"></div>
-        <div class="mesh-image-wrap">
-          <img
-            class="mesh-image"
-            src="background.png"
-            alt="Abstract digital mesh"
-          />
-        </div>
-        <div class="accent-vertical"></div>
-        <div class="accent-horizontal"></div>
-      </div>
+    <main class="post-main grid-bg">
+      <div class="post-overlay"></div>
 
-      <section class="hero">
-        <div class="hero-status">
-          <div class="status-row">
-            <span class="status-dot"></span>
-            <span class="status-text">System Initialization Complete</span>
+      <article class="post-shell">
+        <div class="post-hero">
+          <div class="post-hero-meta">
+            <div class="status-row">
+              <span class="status-dot"></span>
+              <span class="status-text">ARTICLE_STREAM_READY</span>
+            </div>
+            <div class="post-hero-divider"></div>
           </div>
 
-          <h1 class="hero-title">
-            <span class="hero-line-wrap"><span class="hero-line hero-line--1">CORE_<span class="glow-sm" style="color: var(--primary);">V1.0</span></span></span><br />
-            <span class="hero-line-wrap"><span class="hero-line hero-title-small hero-line--2">RYAN APPEL</span></span>
+          <h1 class="post-title">
+            <span class="hero-line-wrap"><span class="hero-line hero-line--1">Designing a Zero-Guesswork Debug Pipeline</span></span>
           </h1>
-        </div>
 
-        <div class="hero-grid">
-          <div>
-            <p class="hero-copy anim-fade-up" style="--anim-delay: 0.55s">
-              Fullstack Developer. Programming Teacher.
-              <span class="hero-copy-strong">Builder of Digital Worlds.</span>
-              Building robust systems through technical precision and intentional design.
-            </p>
-
-            <div class="hero-actions anim-fade-up" style="--anim-delay: 0.72s; justify-content: center;">
-              <button class="btn-secondary">View Source</button>
-            </div>
-          </div>
-
-          <div class="metadata-col anim-fade-right" style="--anim-delay: 0.6s">
-            <div class="metadata-panel">
-              <div class="metadata-header">
-                <span class="metadata-title">Metadata Panel</span>
-                <div class="metadata-lights">
-                  <div class="light light-error"></div>
-                  <div class="light light-ok"></div>
-                </div>
-              </div>
-
-              <div class="metadata-list">
-                <div class="metadata-row">
-                  <span class="metadata-key">LOCATION:</span>
-                  <span class="metadata-value secondary">Appleton, WI, USA</span>
-                </div>
-                <div class="metadata-row">
-                  <span class="metadata-key">STACK:</span>
-                  <span class="metadata-value">Astro</span>
-                </div>
-                <div class="metadata-row">
-                  <span class="metadata-key">UPTIME:</span>
-                  <span class="metadata-value dim">99.9%</span>
-                </div>
-                <div class="metadata-row">
-                  <span class="metadata-key">EXPERIENCE:</span>
-                  <span class="metadata-value neutral">25+ Years</span>
-                </div>
-              </div>
-            </div>
+          <div class="post-meta-row">
+            <span class="post-meta-chip">2026-03-18</span>
+            <span class="post-meta-chip">ENGINEERING_LOG</span>
+            <span class="post-meta-chip">READ_TIME: 6m</span>
           </div>
         </div>
-      </section>
 
-      <div class="grid-fragments">
-        <div class="fragment"></div>
-        <div class="fragment-offset"></div>
-      </div>
+        <section class="post-body anim-fade-up" style="--anim-delay: 0.08s;">
+          <p>
+            Most debugging pain is not caused by hard bugs, it is caused by unclear signals. When logs are inconsistent,
+            environments drift, and reproducibility is optional, even simple failures become expensive.
+          </p>
+
+          <p>
+            The pipeline below is intentionally boring: one trace format, one triage path, one rollback route. Boring is a
+            feature because it lowers cognitive load under pressure.
+          </p>
+
+          <h2>1. Normalize Your Event Shape</h2>
+          <p>
+            Every emitted event should carry the same core envelope: timestamp, request id, subsystem, severity, and action.
+            That single decision enables filtering and correlation without custom parsing.
+          </p>
+
+          <pre class="post-code"><code>{
+  "ts": "2026-03-18T13:42:19.129Z",
+  "trace": "req-9f12",
+  "scope": "api.orders.create",
+  "severity": "warn",
+  "message": "validation fallback applied"
+}</code></pre>
+
+          <h2>2. Capture Failure as a Timeline</h2>
+          <p>
+            For every production issue, build a linear timeline first. Do not jump to hypotheses before the ordering is clear.
+            Teams that force timeline-first triage usually halve the number of false leads.
+          </p>
+
+          <h2>3. Keep a Deterministic Repro Harness</h2>
+          <p>
+            Keep one script per critical subsystem that can replay known-bad payloads. The best debug script is the one an
+            on-call engineer can run at 2:00 AM without reading documentation.
+          </p>
+
+          <h2>4. End Every Incident with a Debug Contract</h2>
+          <p>
+            Close each issue with one contract improvement: a missing field added, a better alert threshold, or a stricter
+            invariant. Over time, this compounds into a system where bugs get easier instead of harder.
+          </p>
+
+          <blockquote class="post-quote">
+            "If your logs need a meeting to interpret, your observability is not finished."
+          </blockquote>
+
+          <div class="post-back-row">
+            <a class="archive-post-btn" href="archive.html">Back To Archive</a>
+          </div>
+        </section>
+      </article>
     </main>
 
     <footer class="bottombar">
@@ -175,7 +174,7 @@
         </div>
         <div class="bottombar-item">
           <span class="material-symbols-outlined" style="font-size: 14px;">description</span>
-          <span>PAGE: /root</span>
+          <span>PAGE: /root/archive/post</span>
         </div>
       </div>
 
@@ -188,6 +187,7 @@
       </div>
     </footer>
   </div>
+
   <script src="clock.js"></script>
 </body>
 </html>

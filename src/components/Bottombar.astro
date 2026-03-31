@@ -1,0 +1,24 @@
+---
+const { pageName = 'root' } = Astro.props;
+---
+
+<footer class="bottombar">
+	<div class="bottombar-left">
+		<div class="bottombar-item status">
+			<span class="material-symbols-outlined" style="font-size: 14px;">south_east</span>
+			<span style="font-weight: 700;">STATUS: ONLINE</span>
+		</div>
+		<div class="bottombar-item">
+			<span class="material-symbols-outlined" style="font-size: 14px;">description</span>
+			<span>PAGE: /{pageName}</span>
+		</div>
+	</div>
+
+	<div class="bottombar-right">
+		<div class="bottombar-item">
+			<span class="material-symbols-outlined" style="font-size: 14px;">memory</span>
+			<span>STACK: ASTRO</span>
+		</div>
+		<div class="bottombar-time">14:23:02 UTC</div>
+	</div>
+</footer>

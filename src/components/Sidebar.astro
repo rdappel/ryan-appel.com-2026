@@ -1,0 +1,51 @@
+---
+const { activePage = 'root' } = Astro.props;
+---
+
+<aside class="sidebar">
+	<div class="sidebar-section">
+		<div class="sidebar-brand">
+			<div class="sidebar-icon-box">
+				<span class="material-symbols-outlined" style="color: var(--primary);">terminal</span>
+			</div>
+			<div>
+				<h2 class="sidebar-title">CORE_V1.0</h2>
+				<p class="sidebar-status">STATUS: ONLINE</p>
+			</div>
+		</div>
+
+		<nav class="side-nav">
+			<a class={`side-nav-link ${activePage === 'root' ? 'active' : ''}`} href="/">
+				<span class="material-symbols-outlined">home</span>
+				<span>root</span>
+			</a>
+			<a class={`side-nav-link ${activePage === 'projects' ? 'active' : ''}`} href="/projects/">
+				<span class="material-symbols-outlined">folder_special</span>
+				<span>root/projects</span>
+			</a>
+			<a class={`side-nav-link ${activePage === 'teaching' ? 'active' : ''}`} href="/teaching/">
+				<span class="material-symbols-outlined">school</span>
+				<span>root/teaching</span>
+			</a>
+			<a class={`side-nav-link ${activePage === 'stack' ? 'active' : ''}`} href="/stack/">
+				<span class="material-symbols-outlined">terminal</span>
+				<span>root/stack</span>
+			</a>
+			<a class={`side-nav-link ${activePage === 'archive' ? 'active' : ''}`} href="/archive/">
+				<span class="material-symbols-outlined">inventory_2</span>
+				<span>root/archive</span>
+			</a>
+			<a class={`side-nav-link ${activePage === 'contact' ? 'active' : ''}`} href="/contact/">
+				<span class="material-symbols-outlined">alternate_email</span>
+				<span>root/contact</span>
+			</a>
+		</nav>
+	</div>
+
+	<div class="sidebar-footer">
+		<div class="branch-box">
+			<p class="branch-label">Current Branch</p>
+			<p class="branch-value">master*</p>
+		</div>
+	</div>
+</aside>

@@ -1,0 +1,273 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const projectModules = import.meta.glob('../content/projects/*.md', { eager: true });
+
+const allProjects = Object.entries(projectModules)
+	.map(([path, mod]) => {
+		const frontmatter = mod.frontmatter;
+		const slug = path.split('/').pop()?.replace(/\.md$/, '') ?? '';
+
+		return {
+			slug,
+			data: {
+				title: String(frontmatter.title ?? ''),
+				category: String(frontmatter.category ?? 'applications'),
+				order: Number(frontmatter.order ?? 0),
+				status: String(frontmatter.status ?? ''),
+				pillTone: String(frontmatter.pillTone ?? 'default'),
+				metaLabel: String(frontmatter.metaLabel ?? ''),
+				metaValue: String(frontmatter.metaValue ?? ''),
+				comp: String(frontmatter.comp ?? ''),
+				featuredTag: String(frontmatter.featuredTag ?? ''),
+				description: String(frontmatter.description ?? ''),
+				actionLabel: String(frontmatter.actionLabel ?? 'OPEN_PROJECT.SH'),
+				actionUrl: String(frontmatter.actionUrl ?? '#'),
+				metrics: {
+					uptime: String(frontmatter.metrics?.uptime ?? ''),
+					commits: String(frontmatter.metrics?.commits ?? ''),
+					latency: String(frontmatter.metrics?.latency ?? ''),
+					encryptionLevel: String(frontmatter.metrics?.encryptionLevel ?? ''),
+					lastSync: String(frontmatter.metrics?.lastSync ?? ''),
+				},
+			},
+		};
+	})
+	.filter((project) => project.slug && project.data.title)
+	.sort((a, b) => a.data.order - b.data.order);
+
+const categoryConfig = {
+	applications: {
+		title: 'Applications',
+		description:
+			'System-level tools and productivity software built for modularity and measurable output.',
+		icon: 'layers',
+		columnClass: 'projects-column-apps',
+	},
+	websites: {
+		title: 'Web Sites',
+		description:
+			'Conversion-focused brand sites and composable experiences with clean performance budgets.',
+		icon: 'web',
+		columnClass: 'projects-column-web',
+	},
+	games: {
+		title: 'Games',
+		description:
+			'Interactive prototypes and procedural worlds built with modern engines and rapid iteration loops.',
+		icon: 'sports_esports',
+		columnClass: 'projects-column-games',
+	},
+};
+
+const categoryKeys = Object.keys(categoryConfig);
+
+const groupedProjects = {
+	applications: allProjects.filter((project) => project.data.category === 'applications'),
+	websites: allProjects.filter((project) => project.data.category === 'websites'),
+	games: allProjects.filter((project) => project.data.category === 'games'),
+};
+
+const fallbackProject = {
+	slug: 'placeholder',
+	data: {
+		title: 'NO_PROJECTS_CONFIGURED',
+		category: 'applications',
+		order: 0,
+		status: 'N/A',
+		pillTone: 'default',
+		metaLabel: 'INFO',
+		metaValue: 'N/A',
+		comp: 'N/A',
+		featuredTag: 'PROJECTS_DATA_EMPTY',
+		description: 'Add markdown entries in src/content/projects to populate this panel.',
+		actionLabel: 'ADD_PROJECTS.md',
+		actionUrl: '#',
+		metrics: {
+			uptime: 'N/A',
+			commits: 'N/A',
+			latency: 'N/A',
+			encryptionLevel: 'N/A',
+			lastSync: 'N/A',
+		},
+	},
+};
+
+const initialProject = groupedProjects.applications[0] ?? allProjects[0] ?? fallbackProject;
+
+const projectPayload = Object.fromEntries(
+	allProjects.map((project) => [
+		project.slug,
+		{
+			title: project.data.title,
+			featuredTag: project.data.featuredTag,
+			description: project.data.description,
+			actionLabel: project.data.actionLabel,
+			actionUrl: project.data.actionUrl,
+			metrics: project.data.metrics,
+		},
+	]),
+);
+---
+
+<Layout title="PROJECTS_ARCHIVE // TERMINAL_CORE" pageName="projects">
+	<main class="projects-main grid-bg">
+		<div class="projects-overlay"></div>
+
+		<section class="projects-shell">
+			<div class="projects-hero">
+				<div class="projects-hero-meta">
+					<div class="status-row">
+						<span class="status-dot"></span>
+						<span class="status-text">PROJECTS_CHANNEL_ACTIVE</span>
+					</div>
+					<div class="projects-hero-divider"></div>
+				</div>
+
+				<h1 class="projects-title">
+					<span class="hero-line-wrap"><span class="hero-line hero-line--1">PROJECT_<span class="projects-title-accent">ARCHIVE</span></span></span>
+				</h1>
+
+				<p class="projects-subtitle">
+					A curated mission log of applications, web systems, and game prototypes built for clarity, speed, and long-term maintainability.
+				</p>
+			</div>
+
+			<section class="projects-priority-row">
+				<section class="projects-featured">
+					<div class="projects-featured-asset">
+						<span class="projects-featured-tag" id="project-featured-tag">{initialProject.data.featuredTag}</span>
+						<h3 class="projects-featured-title" id="project-featured-title">{initialProject.data.title}</h3>
+						<p class="projects-featured-copy" id="project-featured-copy">{initialProject.data.description}</p>
+						<a
+							class="terminal-submit"
+							id="project-featured-action"
+							type="button"
+							href={initialProject.data.actionUrl}
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							<span class="material-symbols-outlined" style="font-size: 18px;">inventory_2</span>
+							<span id="project-featured-action-label">{initialProject.data.actionLabel}</span>
+						</a>
+					</div>
+				</section>
+
+				<section class="projects-metrics">
+					<div class="projects-metrics-card">
+						<div>
+							<span class="material-symbols-outlined projects-metrics-icon">analytics</span>
+							<h3 class="projects-metrics-title" id="project-metrics-title">SYSTEM_METRICS // {initialProject.data.title}</h3>
+
+							<div class="projects-metric-rows">
+								<div class="projects-metric-row">
+									<span class="projects-metric-label">UPTIME:</span>
+									<span class="projects-metric-value" id="project-metric-uptime">{initialProject.data.metrics.uptime}</span>
+								</div>
+								<div class="projects-metric-row">
+									<span class="projects-metric-label">COMMITS:</span>
+									<span class="projects-metric-value" id="project-metric-commits">{initialProject.data.metrics.commits}</span>
+								</div>
+								<div class="projects-metric-row">
+									<span class="projects-metric-label">LATENCY:</span>
+									<span class="projects-metric-value secondary" id="project-metric-latency">{initialProject.data.metrics.latency}</span>
+								</div>
+							</div>
+						</div>
+
+						<div class="projects-metrics-foot" id="project-metrics-foot">
+							ENCRYPTION_LEVEL: <span id="project-metric-encryption">{initialProject.data.metrics.encryptionLevel}</span><br />
+							LAST_SYNC: <span id="project-metric-sync">{initialProject.data.metrics.lastSync}</span>
+						</div>
+					</div>
+				</section>
+			</section>
+
+			<div class="projects-grid">
+				{categoryKeys.map((categoryKey) => (
+					<section class={`projects-column ${categoryConfig[categoryKey].columnClass}`}>
+						<div class="projects-column-head">
+							<h2 class="projects-column-title">{categoryConfig[categoryKey].title}</h2>
+							<span class="material-symbols-outlined">{categoryConfig[categoryKey].icon}</span>
+						</div>
+						<p class="projects-column-copy">{categoryConfig[categoryKey].description}</p>
+
+						{groupedProjects[categoryKey].map((project) => (
+							<button
+								type="button"
+								class={`projects-preview-card projects-preview-card-btn ${project.slug === initialProject.slug ? 'active' : ''}`}
+								data-project-slug={project.slug}
+							>
+								<div class="projects-preview-head">
+									<h3 class="projects-preview-title">{project.data.title}</h3>
+									<span class={`projects-pill ${project.data.pillTone === 'default' ? '' : project.data.pillTone}`}>{project.data.status}</span>
+								</div>
+								<div class="projects-preview-meta">
+									<span>{project.data.metaLabel}: {project.data.metaValue}</span>
+									<span>COMP: {project.data.comp}</span>
+								</div>
+							</button>
+						))}
+					</section>
+				))}
+			</div>
+		</section>
+	</main>
+</Layout>
+
+<script define:vars={{ projectPayload, initialSlug: initialProject.slug }}>
+	const cards = Array.from(
+		document.querySelectorAll('.projects-preview-card-btn[data-project-slug]'),
+	);
+
+	const featuredTagEl = document.getElementById('project-featured-tag');
+	const featuredTitleEl = document.getElementById('project-featured-title');
+	const featuredCopyEl = document.getElementById('project-featured-copy');
+	const featuredActionEl = document.getElementById('project-featured-action');
+	const featuredActionLabelEl = document.getElementById('project-featured-action-label');
+
+	const metricsTitleEl = document.getElementById('project-metrics-title');
+	const uptimeEl = document.getElementById('project-metric-uptime');
+	const commitsEl = document.getElementById('project-metric-commits');
+	const latencyEl = document.getElementById('project-metric-latency');
+	const encryptionEl = document.getElementById('project-metric-encryption');
+	const syncEl = document.getElementById('project-metric-sync');
+
+	const updateProjectView = (slug) => {
+		const project = projectPayload[slug];
+		if (!project) return;
+
+		if (featuredTagEl) featuredTagEl.textContent = project.featuredTag;
+		if (featuredTitleEl) featuredTitleEl.textContent = project.title;
+		if (featuredCopyEl) featuredCopyEl.textContent = project.description;
+
+		if (featuredActionEl) {
+			featuredActionEl.setAttribute('href', project.actionUrl || '#');
+		}
+
+		if (featuredActionLabelEl) {
+			featuredActionLabelEl.textContent = project.actionLabel;
+		}
+
+		if (metricsTitleEl) metricsTitleEl.textContent = `SYSTEM_METRICS // ${project.title}`;
+		if (uptimeEl) uptimeEl.textContent = project.metrics.uptime;
+		if (commitsEl) commitsEl.textContent = project.metrics.commits;
+		if (latencyEl) latencyEl.textContent = project.metrics.latency;
+		if (encryptionEl) encryptionEl.textContent = project.metrics.encryptionLevel;
+		if (syncEl) syncEl.textContent = project.metrics.lastSync;
+
+		cards.forEach((card) => {
+			const isActive = card.getAttribute('data-project-slug') === slug;
+			card.classList.toggle('active', isActive);
+		});
+	};
+
+	cards.forEach((card) => {
+		card.addEventListener('click', () => {
+			const slug = card.getAttribute('data-project-slug');
+			if (slug) updateProjectView(slug);
+		});
+	});
+
+	updateProjectView(initialSlug);
+</script>
