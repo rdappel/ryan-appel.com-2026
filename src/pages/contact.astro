@@ -1,0 +1,101 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="ESTABLISH_CONNECTION // TERMINAL_CORE" pageName="contact">
+	<main class="contact-main grid-bg">
+		<div class="contact-overlay"></div>
+
+		<section class="contact-shell">
+			<div class="contact-panel">
+				<div class="contact-head">
+					<div class="contact-head-row">
+						<div class="status-row">
+							<span class="status-dot"></span>
+							<span class="status-text">ESTABLISH_CONNECTION</span>
+						</div>
+						<div class="contact-head-divider"></div>
+					</div>
+					<h1 class="contact-title">
+						<span class="hero-line-wrap"><span class="hero-line hero-line--1">contact<span class="contact-title-accent">_exe</span></span></span>
+					</h1>
+				</div>
+
+				<div class="terminal-card">
+					<div class="terminal-card-head">
+						<div class="terminal-lights">
+							<div class="terminal-light terminal-light-error"></div>
+							<div class="terminal-light terminal-light-warn"></div>
+							<div class="terminal-light terminal-light-ok"></div>
+						</div>
+						<div class="terminal-head-title">COMMS_INTERFACE_V2.0</div>
+						<div class="terminal-head-spacer"></div>
+					</div>
+
+					<div class="terminal-card-body">
+						<form id="contact-form" class="terminal-form" action="#">
+							<div class="terminal-field">
+								<label class="terminal-label" for="sender-id">SENDER_ID</label>
+								<input id="sender-id" class="terminal-input" type="text" placeholder="GUEST_USER" />
+							</div>
+
+							<div class="terminal-field">
+								<label class="terminal-label" for="protocol-addr">PROTOCOL_ADDR</label>
+								<input id="protocol-addr" class="terminal-input" type="email" placeholder="USER@NETWORK.TCP" />
+							</div>
+
+							<div class="terminal-field">
+								<label class="terminal-label" for="encrypted-msg">ENCRYPTED_MSG</label>
+								<textarea id="encrypted-msg" class="terminal-input terminal-textarea" rows="4" placeholder="INPUT_STRING_HERE..."></textarea>
+							</div>
+
+							<div class="terminal-actions">
+								<div class="terminal-encryption">
+									<div class="terminal-lock-box">
+										<span class="material-symbols-outlined">lock</span>
+									</div>
+									<div>
+										<div class="terminal-encryption-title">ENCRYPTION: AES-256</div>
+										<div class="terminal-encryption-sub">Packet safety guaranteed</div>
+									</div>
+								</div>
+
+								<button id="transmit-btn" class="terminal-submit" type="submit">
+									<span>TRANSMIT</span>
+									<span class="material-symbols-outlined" style="font-size: 16px;">send</span>
+								</button>
+							</div>
+						</form>
+					</div>
+
+					<div class="terminal-card-foot">
+						<div class="terminal-progress-track">
+							<div id="contact-progress-bar" class="terminal-progress-bar"></div>
+						</div>
+					</div>
+				</div>
+
+				<div class="contact-meta-grid">
+					<div class="contact-meta-item">
+						<div class="contact-meta-key">Location</div>
+						<div class="contact-meta-value">NODE_CENTRAL_01</div>
+					</div>
+					<div class="contact-meta-item">
+						<div class="contact-meta-key">Uptime</div>
+						<div class="contact-meta-value">99.982%</div>
+					</div>
+					<div class="contact-meta-item">
+						<div class="contact-meta-key">Protocol</div>
+						<div class="contact-meta-value">WEBSOCKET_TLS</div>
+					</div>
+					<div class="contact-meta-item">
+						<div class="contact-meta-key">Response</div>
+						<div class="contact-meta-value">&lt; 120ms</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<script is:inline src="/contact.js"></script>
+</Layout>

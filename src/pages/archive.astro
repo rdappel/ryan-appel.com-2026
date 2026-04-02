@@ -1,0 +1,63 @@
+---
+import Layout from '../layouts/Layout.astro';
+import postsData from '../data/blog-posts.json';
+
+const posts = [...postsData].sort((a, b) => b.date.localeCompare(a.date));
+
+const channels = [...new Set(posts.map((post) => post.channel).filter(Boolean))];
+---
+
+<Layout title="ARCHIVE_LOG // TERMINAL_CORE" pageName="archive">
+	<main class="archive-main grid-bg">
+		<div class="archive-overlay"></div>
+
+		<section class="archive-shell">
+			<div class="archive-hero">
+				<div class="archive-hero-meta">
+					<div class="status-row">
+						<span class="status-dot"></span>
+						<span class="status-text">ARCHIVE_STREAM_READY</span>
+					</div>
+					<div class="archive-hero-divider"></div>
+				</div>
+				<h1 class="archive-title">
+					<span class="hero-line-wrap"><span class="hero-line hero-line--1">ARCHIVE_<span class="archive-title-accent">LOG</span></span></span>
+				</h1>
+				<p class="archive-subtitle">Field notes on engineering, teaching, debugging, and building intentional software systems.</p>
+			</div>
+
+			<div class="archive-grid">
+				<section class="archive-feed">
+					{posts.map((post, index) => (
+						<article class="archive-post anim-fade-up" style={`--anim-delay: ${0.05 + index * 0.09}s;`}>
+							<div class="archive-post-head">
+								<span class="archive-post-date">{post.date}</span>
+								<span class="archive-post-tag">{post.channel}</span>
+							</div>
+							<h2 class="archive-post-title"><a href={`/archive/${post.slug}/`} class="archive-post-link">{post.title}</a></h2>
+							<p class="archive-post-excerpt">{post.excerpt}</p>
+							<div class="archive-post-foot">
+								<span class="archive-post-meta">READ_TIME: {post.readTime}</span>
+								<a href={`/archive/${post.slug}/`} class="archive-post-btn">Read Entry</a>
+							</div>
+						</article>
+					))}
+				</section>
+
+				<aside class="archive-side anim-fade-right" style="--anim-delay: 0.18s;">
+					<div class="archive-side-card">
+						<h3 class="archive-side-title">Channels</h3>
+						<ul class="archive-side-list">
+							{channels.map((channel) => <li>{channel}</li>)}
+						</ul>
+					</div>
+
+					<div class="archive-side-card">
+						<h3 class="archive-side-title">Now Logging</h3>
+						<p class="archive-side-text">Drafting entries on practical tooling, performance-minded frontend architecture, and teaching patterns that scale.</p>
+					</div>
+				</aside>
+			</div>
+		</section>
+	</main>
+</Layout>

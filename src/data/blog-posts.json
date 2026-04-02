@@ -1,0 +1,26 @@
+[
+  {
+    "slug": "designing-zero-guesswork-debug-pipeline",
+    "title": "Designing a Zero-Guesswork Debug Pipeline",
+    "date": "2026-03-18",
+    "channel": "ENGINEERING_LOG",
+    "readTime": "6m",
+    "excerpt": "A practical workflow for shrinking time-to-fix by making logs readable, observable, and structurally consistent across environments."
+  },
+  {
+    "slug": "how-i-explain-event-loops",
+    "title": "How I Explain Event Loops Without Hand-Waving",
+    "date": "2026-03-06",
+    "channel": "TEACHING_NOTE",
+    "readTime": "8m",
+    "excerpt": "The lesson structure I use to make asynchronous behavior feel concrete: timeline boards, queue simulation, and repeatable lab patterns."
+  },
+  {
+    "slug": "astro-foundation-for-fast-clear-sites",
+    "title": "Astro as a Foundation for Fast, Clear Personal Sites",
+    "date": "2026-02-27",
+    "channel": "BUILD_SYSTEM",
+    "readTime": "5m",
+    "excerpt": "Why I moved to Astro for this site, what improved in authoring speed, and where component islands actually simplify maintenance."
+  }
+]

@@ -135,7 +135,7 @@ const projectPayload = Object.fromEntries(
 
 			<section class="projects-priority-row">
 				<section class="projects-featured">
-					<div class="projects-featured-asset">
+					<div class="projects-featured-asset" id="project-featured-asset">
 						<span class="projects-featured-tag" id="project-featured-tag">{initialProject.data.featuredTag}</span>
 						<h3 class="projects-featured-title" id="project-featured-title">{initialProject.data.title}</h3>
 						<p class="projects-featured-copy" id="project-featured-copy">{initialProject.data.description}</p>
@@ -219,6 +219,7 @@ const projectPayload = Object.fromEntries(
 	const cards = Array.from(
 		document.querySelectorAll('.projects-preview-card-btn[data-project-slug]'),
 	);
+	const featuredAssetEl = document.getElementById('project-featured-asset');
 
 	const featuredTagEl = document.getElementById('project-featured-tag');
 	const featuredTitleEl = document.getElementById('project-featured-title');
@@ -233,7 +234,14 @@ const projectPayload = Object.fromEntries(
 	const encryptionEl = document.getElementById('project-metric-encryption');
 	const syncEl = document.getElementById('project-metric-sync');
 
-	const updateProjectView = (slug) => {
+	const replayFeaturedAnimation = () => {
+		if (!featuredAssetEl) return;
+		featuredAssetEl.classList.remove('is-swapping');
+		void featuredAssetEl.offsetWidth;
+		featuredAssetEl.classList.add('is-swapping');
+	};
+
+	const updateProjectView = (slug, shouldAnimate = true) => {
 		const project = projectPayload[slug];
 		if (!project) return;
 
@@ -260,14 +268,18 @@ const projectPayload = Object.fromEntries(
 			const isActive = card.getAttribute('data-project-slug') === slug;
 			card.classList.toggle('active', isActive);
 		});
+
+		if (shouldAnimate) {
+			replayFeaturedAnimation();
+		}
 	};
 
 	cards.forEach((card) => {
 		card.addEventListener('click', () => {
 			const slug = card.getAttribute('data-project-slug');
-			if (slug) updateProjectView(slug);
+			if (slug) updateProjectView(slug, true);
 		});
 	});
 
-	updateProjectView(initialSlug);
+	updateProjectView(initialSlug, false);
 </script>

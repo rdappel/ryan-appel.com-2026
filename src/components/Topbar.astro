@@ -16,7 +16,33 @@
 
 		<div class="topbar-icons">
 			<span class="material-symbols-outlined icon-btn">terminal</span>
-			<span class="material-symbols-outlined icon-btn">settings_input_component</span>
+			<div class="theme-menu-wrap">
+				<span
+					class="material-symbols-outlined icon-btn"
+					id="theme-toggle-btn"
+					role="button"
+					tabindex="0"
+					aria-label="Theme menu"
+					aria-expanded="false"
+					aria-controls="theme-menu"
+					title="Theme"
+				>settings_input_component</span>
+
+				<div class="theme-menu" id="theme-menu" role="menu" aria-label="Theme selector" hidden>
+					<button type="button" class="theme-menu-item" data-theme-value="system" role="menuitem">
+						<span class="material-symbols-outlined">desktop_windows</span>
+						<span>System</span>
+					</button>
+					<button type="button" class="theme-menu-item" data-theme-value="dark" role="menuitem">
+						<span class="material-symbols-outlined">dark_mode</span>
+						<span>Dark</span>
+					</button>
+					<button type="button" class="theme-menu-item" data-theme-value="light" role="menuitem">
+						<span class="material-symbols-outlined">light_mode</span>
+						<span>Light</span>
+					</button>
+				</div>
+			</div>
 		</div>
 	</div>
 </header>

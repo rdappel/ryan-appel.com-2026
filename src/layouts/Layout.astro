@@ -14,6 +14,34 @@ const { title, pageName = 'root' } = Astro.props;
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+		<script is:inline>
+			(() => {
+				const storageKey = 'theme-preference';
+				const root = document.documentElement;
+
+				const supportsSystem = typeof window.matchMedia === 'function';
+				const systemDark = supportsSystem
+					? window.matchMedia('(prefers-color-scheme: dark)').matches
+					: true;
+
+				let mode = 'system';
+				try {
+					const stored = localStorage.getItem(storageKey);
+					if (stored === 'light' || stored === 'dark' || stored === 'system') {
+						mode = stored;
+					}
+				} catch {
+					mode = 'system';
+				}
+
+				const resolved = mode === 'system' ? (systemDark ? 'dark' : 'light') : mode;
+
+				root.classList.remove('light', 'dark');
+				root.classList.add(resolved);
+				root.setAttribute('data-theme-mode', mode);
+				root.setAttribute('data-theme-resolved', resolved);
+			})();
+		</script>
 
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -38,6 +66,7 @@ const { title, pageName = 'root' } = Astro.props;
 		</div>
 
 		<script is:inline src="/clock.js"></script>
+		<script is:inline src="/theme-toggle.js"></script>
 	</body>
 </html>
 

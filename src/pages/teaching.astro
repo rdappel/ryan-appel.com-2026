@@ -1,0 +1,83 @@
+---
+import Layout from '../layouts/Layout.astro';
+import courseData from '../data/teaching-courses.json';
+
+const currentCourses = courseData.current || [];
+const archivedCourses = courseData.archivedOrSunset || [];
+---
+
+<Layout title="TEACHING_LEDGER // TERMINAL_CORE" pageName="teaching">
+	<main class="teaching-main grid-bg">
+		<div class="teaching-overlay"></div>
+
+		<section class="teaching-shell">
+			<div class="teaching-hero">
+				<div class="teaching-hero-meta">
+					<div class="status-row">
+						<span class="status-dot"></span>
+						<span class="status-text">INSTRUCTION_CHANNEL_ACTIVE</span>
+					</div>
+					<div class="teaching-hero-divider"></div>
+				</div>
+
+				<h1 class="teaching-title">
+					<span class="hero-line-wrap"><span class="hero-line hero-line--1">TEACHING_<span class="teaching-title-accent">LEDGER</span></span></span>
+				</h1>
+
+				<p class="teaching-subtitle">10+ years teaching software and web development, with current focus on AI-assisted software development instruction.</p>
+			</div>
+
+			<div class="teaching-sections">
+				<section class="teaching-section">
+					<div class="stack-section-head">
+						<h2 class="stack-section-title">CURRENT_COURSES</h2>
+						<div class="stack-section-divider"></div>
+					</div>
+
+					<div class="module-cards-2col">
+						{currentCourses.map((course) => (
+							<article class="module-card-sm teaching-card">
+								<div class="module-card-sm-header">
+									<span class="material-symbols-outlined" style="font-size: 28px; color: var(--secondary);">{course.icon}</span>
+									<div>
+										<h3 class="module-card-sm-name">{course.title}</h3>
+										<span class="module-card-sm-subtitle">{course.code}</span>
+									</div>
+								</div>
+								<div class="teaching-card-copy">
+									<span class="teaching-card-copy-label">Track</span>
+									<span class="teaching-card-copy-value">{course.track}</span>
+								</div>
+							</article>
+						))}
+					</div>
+				</section>
+
+				<section class="teaching-section teaching-section-archived">
+					<div class="stack-section-head">
+						<h2 class="stack-section-title">ARCHIVED_OR_SUNSET</h2>
+						<div class="stack-section-divider"></div>
+					</div>
+
+					<div class="module-cards-2col">
+						{archivedCourses.map((course) => (
+							<article class="module-card-sm teaching-card archived">
+								<div class="module-card-sm-header">
+									<span class="material-symbols-outlined" style="font-size: 28px; color: var(--outline);">{course.icon}</span>
+									<div>
+										<h3 class="module-card-sm-name">{course.title}</h3>
+										<span class="module-card-sm-subtitle">{course.code}</span>
+									</div>
+								</div>
+								<div class="teaching-card-copy">
+									<span class="teaching-card-copy-label">Track</span>
+									<span class="teaching-card-copy-value">{course.track}</span>
+								</div>
+							</article>
+						))}
+					</div>
+				</section>
+			</div>
+		</section>
+	</main>
+</Layout>

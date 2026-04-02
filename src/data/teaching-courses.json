@@ -1,0 +1,84 @@
+{
+  "current": [
+    {
+      "title": "Modern JavaScript",
+      "code": "MODERN_JS // ACTIVE",
+      "icon": "javascript",
+      "track": "Software Dev / Web Dev"
+    },
+    {
+      "title": "Advanced JavaScript",
+      "code": "ADV_JS // ACTIVE",
+      "icon": "data_object",
+      "track": "Web Dev"
+    },
+    {
+      "title": "C# Introduction to Programming",
+      "code": "CSHARP_INTRO // ACTIVE",
+      "icon": "memory_alt",
+      "track": "Software Dev / Web Dev"
+    },
+    {
+      "title": "C# Intermediate Programming",
+      "code": "CSHARP_INTERMEDIATE // ACTIVE",
+      "icon": "school",
+      "track": "Software Dev"
+    },
+    {
+      "title": "Computer Programming C++",
+      "code": "CPP_PROGRAMMING // ACTIVE",
+      "icon": "memory",
+      "track": "Software Dev"
+    },
+    {
+      "title": "Version Control Essentials",
+      "code": "VCS_ESSENTIALS // ACTIVE",
+      "icon": "fork_right",
+      "track": "Software Dev / Web Dev"
+    },
+    {
+      "title": "Data Access for Programmers",
+      "code": "DATA_ACCESS // ACTIVE",
+      "icon": "database",
+      "track": "Software Dev / Web Dev"
+    },
+    {
+      "title": "HTML5",
+      "code": "HTML5 // ACTIVE",
+      "icon": "description",
+      "track": "Software Dev / Web Dev"
+    },
+    {
+      "title": "PHP",
+      "code": "PHP_WEB // ACTIVE",
+      "icon": "settings_suggest",
+      "track": "Web Dev"
+    },
+    {
+      "title": "Systems Analysis",
+      "code": "SYSTEMS_ANALYSIS // ACTIVE",
+      "icon": "schema",
+      "track": "Software Dev"
+    }
+  ],
+  "archivedOrSunset": [
+    {
+      "title": "Introduction to Mobile Development",
+      "code": "MOBILE_INTRO // ARCHIVED",
+      "icon": "phone_iphone",
+      "track": "Software Dev"
+    },
+    {
+      "title": "iOS Development",
+      "code": "IOS_DEVELOPMENT // SUNSET",
+      "icon": "phone_iphone",
+      "track": "Software Dev"
+    },
+    {
+      "title": "Introduction to Game Development",
+      "code": "GAME_DEV_INTRO // SUNSET",
+      "icon": "stadia_controller",
+      "track": "Software Dev"
+    }
+  ]
+}
