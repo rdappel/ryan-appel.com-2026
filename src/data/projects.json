@@ -1,0 +1,156 @@
+[
+    {
+        "slug": "home-hub",
+        "title": "HOME_HUB",
+        "category": "applications",
+        "order": 1,
+        "status": "DEPLOYED",
+        "pillTone": "success",
+        "metaLabel": "LANG",
+        "metaValue": "NODE//JS",
+        "comp": "0x4A",
+        "featuredTag": "APPLICATION_CORE",
+        "description": "Home automation and control center built on Node.js, integrating smart devices, media systems, and environmental controls into a unified interface for seamless management.",
+        "actionLabel": "VIEW_REPO",
+        "actionUrl": "https://github.com/rdappel/home-hub",
+        "metrics": [
+            "Language: JavaScript",
+            "Framework: Node/Express",
+            "Deployment Status: Deployed",
+            "Last Commit: 10.3.2022",
+            "Last Sync: 4.2.2026"
+        ]
+    },
+    {
+        "slug": "grade-assist",
+        "title": "GRADE_ASSIST",
+        "category": "applications",
+        "order": 2,
+        "status": "LIVE",
+        "pillTone": "tertiary",
+        "metaLabel": "LANG",
+        "metaValue": "NODE//JS",
+        "comp": "0x8F",
+        "featuredTag": "APPLICATION_CORE",
+        "description": "A local Node.js tool that reduces grading time in Blackboard Ultra at FVTC. It auto-launches Chrome, authenticates via Blackboard OAuth2, discovers submissions that need grading, runs configured grading scripts, and presents results in a local dashboard where you can review and apply grades back to Blackboard.",
+        "actionLabel": "VIEW_REPO",
+        "actionUrl": "https://github.com/rdappel/fvtc-grade-assist-core",
+        "metrics": [
+            "Language: JavaScript",
+            "Framework: Node/Express",
+            "Deployment Status: Deployed",
+            "Last Commit: 3.29.2026",
+            "Last Sync: 4.2.2026"
+        ]
+    },
+    {
+        "slug": "ryan-appel.com",
+        "title": "RYAN-APPEL_COM",
+        "category": "websites",
+        "order": 1,
+        "status": "LIVE",
+        "pillTone": "tertiary",
+        "metaLabel": "STACK",
+        "metaValue": "ASTRO",
+        "comp": "0x33",
+        "featuredTag": "WEBSITE_CORE",
+        "description": "Personal portfolio and blog built with Astro, showcasing projects, teaching courses, and technical writing. The site is optimized for performance and accessibility, featuring a clean design and dynamic content generation.",
+        "actionLabel": "VIEW SITE",
+        "actionUrl": "https://ryan-appel.com",
+        "metrics": [
+            "Language: JavaScript/Markdown",
+            "Framework: Astro",
+            "Deployment Status: Deployed",
+            "Last Commit: 4.2.2026",
+            "Last Sync: 4.2.2026"
+        ]
+    },
+    {
+        "slug": "fvtc-software",
+        "title": "FVTC_SOFTWARE",
+        "category": "websites",
+        "order": 2,
+        "status": "LIVE",
+        "pillTone": "tertiary",
+        "metaLabel": "STACK",
+        "metaValue": "NODE//EXPRESS",
+        "comp": "0x1F",
+        "featuredTag": "WEBSITE_SYSTEM",
+        "description": "FVTC IT department website for displaying instructional content and assignments to students. Built on Node.js with a custom server that dynamically generates content for instructors from their github repositories.",
+        "actionLabel": "VIEW_SITE",
+        "actionUrl": "https://fvtc.software/appel/",
+        "metrics": [
+            "Language: JavaScript",
+            "Framework: Node/Express",
+            "Deployment Status: Deployed",
+            "Last Commit: 8.18.2025",
+            "Last Sync: 4.2.2026"
+        ]
+    },
+    {
+        "slug": "arcade-shooter",
+        "title": "ARCADE_SHOOTER",
+        "category": "games",
+        "order": 1,
+        "status": "ALPHA",
+        "pillTone": "default",
+        "metaLabel": "ENGINE",
+        "metaValue": "Katana Engine",
+        "comp": "0xFF",
+        "featuredTag": "GAME_PROTOTYPE",
+        "description": "A shmup (shoot-em-up) prototype built for students of FVTC to build upon. The project features a custom engine built in C++ with Allegro, designed for rapid iteration and modular development. The prototype includes basic player movement, shooting mechanics, and enemy spawning, serving as a foundation for students to implement additional features and gameplay elements. The intent is to deploy to an arcade cabinet in the FVTC IT department for students to play.",
+        "actionLabel": "VIEW_REPO",
+        "actionUrl": "https://github.com/rdappel/ArcadeShooter",
+        "metrics": [
+            "Language: C++",
+            "Framework: Katana Engine",
+            "Deployment Status: In Development",
+            "Last Commit: 12.6.2022",
+            "Last Sync: 4.2.2026"
+        ]
+    },
+    {
+        "slug": "cube-creator",
+        "title": "CUBE_CREATOR_3D",
+        "category": "games",
+        "order": 2,
+        "status": "PROTOTYPE",
+        "pillTone": "default",
+        "metaLabel": "SYSTEM",
+        "metaValue": "Nintendo 3DS",
+        "comp": "0xE2",
+        "featuredTag": "GAME_PROTOTYPE",
+        "description": "I created the initial prototype for Cube Creator 3D, A Minecraft-like sandbox game for the Nintendo 3DS. The prototype was built in C++ using the Nintendo 3DS SDK, featuring basic movement, block placement, and touch-screen inventory system. The project was developed as a proof of concept to demonstrate the feasibility of a voxel-based game on the 3DS hardware, and served as the foundation for the full game development by Big John Games and later Arc System Works. Note: The original link to the nintendo page for the game was removed when the e-shop was taken down. I will link to the review on Nintendo World Report.",
+        "actionLabel": "VIEW ON NINTENDO_COM",
+        "actionUrl": "https://www.nintendoworldreport.com/review/40325/cube-creator-3d-3ds-review",
+        "metrics": [
+            "System: Nintendo 3DS",
+            "Release Date: 8.20.2015",
+            "Deployment Status: Deployed",
+            "Developer: Big John Games",
+            "Publisher: Big John Games"
+        ]
+    },
+    {
+        "slug": "strike-force-foxx",
+        "title": "STRIKE_FORCE_FOXX",
+        "category": "games",
+        "order": 3,
+        "status": "ARCHIVED",
+        "pillTone": "error",
+        "metaLabel": "SYSTEM",
+        "metaValue": "Nintendo 3DS",
+        "comp": "0xE2",
+        "featuredTag": "GAME",
+        "description": "I was lead developer on Strike Force Foxx, an updated verson of the classic choplifter formula for the Nintendo 3DS. The game was built in C++ using the Nintendo 3DS SDK. Note: The original link to the nintendo page for the game was removed when the e-shop was taken down. I will link to the review on Nintendo World Report.",
+        "actionLabel": "VIEW ON NINTENDO_COM",
+        "actionUrl": "https://www.nintendoworldreport.com/review/38095/strike-force-foxx-review",
+        "metrics": [
+            "System: Nintendo 3DS",
+            "Release Date: 8.20.2015",
+            "Deployment Status: Archived",
+            "Developer: Big John Games",
+            "Publisher: Big John Games"
+        ]
+    }
+]

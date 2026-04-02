@@ -1,10 +1,34 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import postsData from '../data/blog-posts.json';
+import Layout from '../layouts/Layout.astro'
 
-const posts = [...postsData].sort((a, b) => b.date.localeCompare(a.date));
+const postFrontmatters = import.meta.glob('../content/posts/*.md', {
+	eager: true,
+	import: 'frontmatter',
+})
 
-const channels = [...new Set(posts.map((post) => post.channel).filter(Boolean))];
+const posts = Object.entries(postFrontmatters)
+	.map(([path, fm]) => {
+		const frontmatter = fm as Record<string, unknown>
+		const slug = path.split('/').pop()?.replace(/\.md$/, '') ?? ''
+		const title = String(frontmatter['title'] ?? '')
+		const date = String(frontmatter['date'] ?? '')
+		const channel = String(frontmatter['channel'] ?? '')
+		const readTime = String(frontmatter['readTime'] ?? '')
+		const excerpt = String(frontmatter['excerpt'] ?? '')
+
+		return {
+			slug,
+			title,
+			date,
+			channel,
+			readTime,
+			excerpt,
+		}
+	})
+	.filter(post => post.slug && post.title)
+	.sort((a, b) => b.date.localeCompare(a.date))
+
+const channels = [...new Set(posts.map(post => post.channel).filter(Boolean))]
 ---
 
 <Layout title="ARCHIVE_LOG // TERMINAL_CORE" pageName="archive">
@@ -38,7 +62,7 @@ const channels = [...new Set(posts.map((post) => post.channel).filter(Boolean))]
 							<p class="archive-post-excerpt">{post.excerpt}</p>
 							<div class="archive-post-foot">
 								<span class="archive-post-meta">READ_TIME: {post.readTime}</span>
-								<a href={`/archive/${post.slug}/`} class="archive-post-btn">Read Entry</a>
+								<a href={`/archive/${post.slug}/`} class="archive-post-btn">READ_ENTRY</a>
 							</div>
 						</article>
 					))}

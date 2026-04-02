@@ -1,10 +1,9 @@
 ---
-layout: ../../layouts/PostLayout.astro
 title: Designing a Zero-Guesswork Debug Pipeline
 date: 2026-03-18
 channel: ENGINEERING_LOG
 readTime: 6m
-excerpt: A practical workflow for shrinking time-to-fix by making logs readable, observable, and structurally consistent across environments.
+excerpt: "A practical workflow for shrinking time-to-fix by making logs readable, observable, and structurally consistent across environments."
 ---
 
 Most debugging pain is not caused by hard bugs. It is caused by unclear signals. When logs are inconsistent, environments drift, and reproducibility is optional, even simple failures become expensive.

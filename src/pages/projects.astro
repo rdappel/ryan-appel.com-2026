@@ -1,38 +1,26 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import projectsData from '../data/projects.json';
 
-const projectModules = import.meta.glob('../content/projects/*.md', { eager: true });
-
-const allProjects = Object.entries(projectModules)
-	.map(([path, mod]) => {
-		const frontmatter = mod.frontmatter;
-		const slug = path.split('/').pop()?.replace(/\.md$/, '') ?? '';
-
-		return {
-			slug,
-			data: {
-				title: String(frontmatter.title ?? ''),
-				category: String(frontmatter.category ?? 'applications'),
-				order: Number(frontmatter.order ?? 0),
-				status: String(frontmatter.status ?? ''),
-				pillTone: String(frontmatter.pillTone ?? 'default'),
-				metaLabel: String(frontmatter.metaLabel ?? ''),
-				metaValue: String(frontmatter.metaValue ?? ''),
-				comp: String(frontmatter.comp ?? ''),
-				featuredTag: String(frontmatter.featuredTag ?? ''),
-				description: String(frontmatter.description ?? ''),
-				actionLabel: String(frontmatter.actionLabel ?? 'OPEN_PROJECT.SH'),
-				actionUrl: String(frontmatter.actionUrl ?? '#'),
-				metrics: {
-					uptime: String(frontmatter.metrics?.uptime ?? ''),
-					commits: String(frontmatter.metrics?.commits ?? ''),
-					latency: String(frontmatter.metrics?.latency ?? ''),
-					encryptionLevel: String(frontmatter.metrics?.encryptionLevel ?? ''),
-					lastSync: String(frontmatter.metrics?.lastSync ?? ''),
-				},
-			},
-		};
-	})
+const allProjects = projectsData
+	.map((project) => ({
+		slug: String(project.slug ?? ''),
+		data: {
+			title: String(project.title ?? ''),
+			category: String(project.category ?? 'applications'),
+			order: Number(project.order ?? 0),
+			status: String(project.status ?? ''),
+			pillTone: String(project.pillTone ?? 'default'),
+			metaLabel: String(project.metaLabel ?? ''),
+			metaValue: String(project.metaValue ?? ''),
+			comp: String(project.comp ?? ''),
+			featuredTag: String(project.featuredTag ?? ''),
+			description: String(project.description ?? ''),
+			actionLabel: String(project.actionLabel ?? 'OPEN_PROJECT.SH'),
+			actionUrl: String(project.actionUrl ?? '#'),
+			metrics: Array.isArray(project.metrics) ? project.metrics.map(String) : [],
+		},
+	}))
 	.filter((project) => project.slug && project.data.title)
 	.sort((a, b) => a.data.order - b.data.order);
 
@@ -80,16 +68,10 @@ const fallbackProject = {
 		metaValue: 'N/A',
 		comp: 'N/A',
 		featuredTag: 'PROJECTS_DATA_EMPTY',
-		description: 'Add markdown entries in src/content/projects to populate this panel.',
-		actionLabel: 'ADD_PROJECTS.md',
+		description: 'Add entries in src/data/projects.json to populate this panel.',
+		actionLabel: 'ADD_PROJECTS.json',
 		actionUrl: '#',
-		metrics: {
-			uptime: 'N/A',
-			commits: 'N/A',
-			latency: 'N/A',
-			encryptionLevel: 'N/A',
-			lastSync: 'N/A',
-		},
+		metrics: ['Status: N/A'],
 	},
 };
 
@@ -159,25 +141,19 @@ const projectPayload = Object.fromEntries(
 							<span class="material-symbols-outlined projects-metrics-icon">analytics</span>
 							<h3 class="projects-metrics-title" id="project-metrics-title">SYSTEM_METRICS // {initialProject.data.title}</h3>
 
-							<div class="projects-metric-rows">
-								<div class="projects-metric-row">
-									<span class="projects-metric-label">UPTIME:</span>
-									<span class="projects-metric-value" id="project-metric-uptime">{initialProject.data.metrics.uptime}</span>
-								</div>
-								<div class="projects-metric-row">
-									<span class="projects-metric-label">COMMITS:</span>
-									<span class="projects-metric-value" id="project-metric-commits">{initialProject.data.metrics.commits}</span>
-								</div>
-								<div class="projects-metric-row">
-									<span class="projects-metric-label">LATENCY:</span>
-									<span class="projects-metric-value secondary" id="project-metric-latency">{initialProject.data.metrics.latency}</span>
-								</div>
+							<div class="projects-metric-rows" id="project-metric-rows">
+								{initialProject.data.metrics.map((item) => {
+									const colonIdx = item.indexOf(': ');
+									const label = colonIdx >= 0 ? item.slice(0, colonIdx).toUpperCase() : item.toUpperCase();
+									const value = colonIdx >= 0 ? item.slice(colonIdx + 2) : '';
+									return (
+										<div class="projects-metric-row">
+											<span class="projects-metric-label">{label}:</span>
+											<span class="projects-metric-value">{value}</span>
+										</div>
+									);
+								})}
 							</div>
-						</div>
-
-						<div class="projects-metrics-foot" id="project-metrics-foot">
-							ENCRYPTION_LEVEL: <span id="project-metric-encryption">{initialProject.data.metrics.encryptionLevel}</span><br />
-							LAST_SYNC: <span id="project-metric-sync">{initialProject.data.metrics.lastSync}</span>
 						</div>
 					</div>
 				</section>
@@ -228,11 +204,7 @@ const projectPayload = Object.fromEntries(
 	const featuredActionLabelEl = document.getElementById('project-featured-action-label');
 
 	const metricsTitleEl = document.getElementById('project-metrics-title');
-	const uptimeEl = document.getElementById('project-metric-uptime');
-	const commitsEl = document.getElementById('project-metric-commits');
-	const latencyEl = document.getElementById('project-metric-latency');
-	const encryptionEl = document.getElementById('project-metric-encryption');
-	const syncEl = document.getElementById('project-metric-sync');
+	const metricRowsEl = document.getElementById('project-metric-rows');
 
 	const replayFeaturedAnimation = () => {
 		if (!featuredAssetEl) return;
@@ -258,11 +230,25 @@ const projectPayload = Object.fromEntries(
 		}
 
 		if (metricsTitleEl) metricsTitleEl.textContent = `SYSTEM_METRICS // ${project.title}`;
-		if (uptimeEl) uptimeEl.textContent = project.metrics.uptime;
-		if (commitsEl) commitsEl.textContent = project.metrics.commits;
-		if (latencyEl) latencyEl.textContent = project.metrics.latency;
-		if (encryptionEl) encryptionEl.textContent = project.metrics.encryptionLevel;
-		if (syncEl) syncEl.textContent = project.metrics.lastSync;
+		if (metricRowsEl) {
+			metricRowsEl.innerHTML = '';
+			(project.metrics || []).forEach((item) => {
+				const colonIdx = item.indexOf(': ');
+				const label = colonIdx >= 0 ? item.slice(0, colonIdx).toUpperCase() : item.toUpperCase();
+				const value = colonIdx >= 0 ? item.slice(colonIdx + 2) : '';
+				const row = document.createElement('div');
+				row.className = 'projects-metric-row';
+				const labelSpan = document.createElement('span');
+				labelSpan.className = 'projects-metric-label';
+				labelSpan.textContent = label + ':';
+				const valueSpan = document.createElement('span');
+				valueSpan.className = 'projects-metric-value';
+				valueSpan.textContent = value;
+				row.appendChild(labelSpan);
+				row.appendChild(valueSpan);
+				metricRowsEl.appendChild(row);
+			});
+		}
 
 		cards.forEach((card) => {
 			const isActive = card.getAttribute('data-project-slug') === slug;

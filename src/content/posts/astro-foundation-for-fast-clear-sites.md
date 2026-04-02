@@ -1,10 +1,9 @@
 ---
-layout: ../../layouts/PostLayout.astro
 title: Astro as a Foundation for Fast, Clear Personal Sites
 date: 2026-02-27
 channel: BUILD_SYSTEM
 readTime: 5m
-excerpt: Why I moved to Astro for this site, what improved in authoring speed, and where component islands actually simplify maintenance.
+excerpt: "Why I moved to Astro for this site, what improved in authoring speed, and where component islands actually simplify maintenance."
 ---
 
 I moved this site to Astro for one reason above all others: clarity. The project does not need a client-heavy architecture to publish fast pages with a strong layout system and a small amount of interactivity.

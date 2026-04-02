@@ -1,0 +1,64 @@
+---
+import Layout from '../../layouts/Layout.astro'
+
+export function getStaticPaths() {
+	const postModules = import.meta.glob<{
+		frontmatter: Record<string, unknown>;
+		default: any;
+	}>('../../content/posts/*.md', { eager: true })
+
+	return Object.entries(postModules).map(([path, mod]) => {
+		const markdownModule = mod as {
+			frontmatter: Record<string, unknown>;
+			default: any;
+		}
+		const slug = path.split('/').pop()?.replace(/\.md$/, '') ?? ''
+
+		return {
+			params: { slug },
+			props: {
+				frontmatter: markdownModule.frontmatter ?? {},
+				Content: markdownModule.default,
+			},
+		}
+	})
+}
+
+const { frontmatter, Content } = Astro.props
+---
+
+<Layout title={`${frontmatter.title} // TERMINAL_CORE`} pageName="archive">
+	<main class="post-main grid-bg">
+		<div class="post-overlay"></div>
+
+		<article class="post-shell">
+			<div class="post-hero">
+				<div class="post-hero-meta">
+					<div class="status-row">
+						<span class="status-dot"></span>
+						<span class="status-text">ARTICLE_STREAM_READY</span>
+					</div>
+					<div class="post-hero-divider"></div>
+				</div>
+
+				<h1 class="post-title">
+					<span class="hero-line-wrap"><span class="hero-line hero-line--1">{frontmatter.title}</span></span>
+				</h1>
+
+				<div class="post-meta-row">
+					<span class="post-meta-chip">{frontmatter.date}</span>
+					<span class="post-meta-chip">{frontmatter.channel}</span>
+					<span class="post-meta-chip">READ_TIME: {frontmatter.readTime}</span>
+				</div>
+			</div>
+
+			<section class="post-body anim-fade-up" style="--anim-delay: 0.08s;">
+				<Content />
+
+				<div class="post-back-row">
+					<a class="archive-post-btn" href="/archive/">BACK_TO_ARCHIVE</a>
+				</div>
+			</section>
+		</article>
+	</main>
+</Layout>

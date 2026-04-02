@@ -2792,10 +2792,11 @@ html.light .glow-sm {
 }
 
 .archive-post {
-  background: linear-gradient(to bottom right, rgba(17, 19, 24, 0.95), rgba(23, 26, 31, 0.92));
-  border: 1px solid rgba(70, 72, 77, 0.35);
+  background: linear-gradient(to bottom right, rgba(17, 19, 24, 0.74), rgba(23, 26, 31, 0.7));
   border-left: 2px solid var(--primary-fixed-dim);
   padding: 22px 22px 18px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 24px 40px rgba(0, 227, 253, 0.04);
 }
 
 .archive-post-head {
@@ -2884,9 +2885,10 @@ html.light .glow-sm {
 }
 
 .archive-side-card {
-  background: var(--surface-container-low);
-  border: 1px solid rgba(70, 72, 77, 0.35);
+  background: rgba(17, 19, 24, 0.72);
   padding: 18px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 20px 40px rgba(0, 227, 253, 0.04);
 }
 
 .archive-side-title {
@@ -2977,7 +2979,7 @@ html.light .glow-sm {
 .post-hero-divider {
   flex: 1;
   height: 1px;
-  background: rgba(70, 72, 77, 0.35);
+  background: linear-gradient(to right, rgba(70, 72, 77, 0.1), rgba(70, 72, 77, 0.45));
 }
 
 .post-title {
@@ -3002,16 +3004,17 @@ html.light .glow-sm {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--secondary);
-  border: 1px solid rgba(70, 72, 77, 0.35);
   padding: 4px 8px;
-  background: rgba(17, 19, 24, 0.7);
+  background: rgba(17, 19, 24, 0.62);
+  backdrop-filter: blur(20px);
 }
 
 .post-body {
-  background: rgba(17, 19, 24, 0.86);
-  border: 1px solid rgba(70, 72, 77, 0.35);
+  background: rgba(17, 19, 24, 0.72);
   border-left: 2px solid var(--primary-fixed-dim);
   padding: 26px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 24px 40px rgba(0, 227, 253, 0.04);
 }
 
 .post-body p {
@@ -3035,7 +3038,6 @@ html.light .glow-sm {
   margin: 18px 0;
   padding: 16px;
   background: var(--surface-container-lowest);
-  border: 1px solid rgba(70, 72, 77, 0.35);
   border-left: 2px solid var(--secondary);
   overflow-x: auto;
 }

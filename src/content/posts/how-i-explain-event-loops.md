@@ -1,10 +1,9 @@
 ---
-layout: ../../layouts/PostLayout.astro
 title: How I Explain Event Loops Without Hand-Waving
 date: 2026-03-06
 channel: TEACHING_NOTE
 readTime: 8m
-excerpt: The lesson structure I use to make asynchronous behavior feel concrete: timeline boards, queue simulation, and repeatable lab patterns.
+excerpt: "The lesson structure I use to make asynchronous behavior feel concrete: timeline boards, queue simulation, and repeatable lab patterns."
 ---
 
 Students usually struggle with the event loop for the same reason beginners struggle with concurrency: the system is invisible. If the mechanism stays abstract, explanations turn into metaphors instead of understanding.
