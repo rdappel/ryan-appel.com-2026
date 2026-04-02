@@ -729,6 +729,19 @@ html.light .terminal-input::placeholder {
   color: var(--outline);
 }
 
+html.light .terminal-card-head {
+  background: transparent;
+  border-bottom: 1px solid rgba(187, 201, 207, 0.5);
+}
+
+html.light .terminal-head-title {
+  color: var(--on-surface);
+}
+
+html.light .terminal-head-meta {
+  color: var(--outline);
+}
+
 html.light .projects-pill,
 html.light .post-meta-chip {
   background: var(--surface-container-highest);
@@ -736,17 +749,69 @@ html.light .post-meta-chip {
 
 html.light .projects-metrics-card,
 html.light .projects-featured-asset {
-  background: var(--surface-container-highest);
+  background: rgba(255, 255, 255, 0.68);
 }
 
 html.light .projects-column {
-  background: var(--surface-container);
+  background: rgba(255, 255, 255, 0.68);
+}
+
+html.light .metadata-panel,
+html.light .module-card,
+html.light .module-card-sm,
+html.light .data-card,
+html.light .metric-cell,
+html.light .terminal-card,
+html.light .archive-post,
+html.light .archive-side-card,
+html.light .post-body {
+  background: rgba(255, 255, 255, 0.68);
+}
+
+html.light .metadata-panel,
+html.light .data-card,
+html.light .metric-cell,
+html.light .terminal-card,
+html.light .archive-post,
+html.light .archive-side-card,
+html.light .post-body,
+html.light .projects-metrics-card,
+html.light .projects-featured-asset {
+  border: 0;
+  border-left: 3px solid var(--primary-fixed-dim);
+}
+
+html.light .projects-column {
+  border: 0;
+  border-left: 3px solid var(--primary-fixed-dim);
+}
+
+html.light .projects-column-web {
+  border-left-color: var(--secondary-fixed-dim);
+}
+
+html.light .projects-column-games {
+  border-left-color: var(--tertiary-fixed-dim);
 }
 
 html.light .teaching-card {
   background: rgba(255, 255, 255, 0.68);
   border: 0;
   border-left: 3px solid var(--secondary-fixed-dim);
+}
+
+html.light .module-card,
+html.light .module-card-sm {
+  border: 0;
+  border-left: 3px solid var(--primary-fixed-dim);
+}
+
+html.light .stack-section-frameworks .module-card-sm {
+  border-left-color: var(--secondary-fixed-dim);
+}
+
+html.light .stack-section-additional .module-card-sm {
+  border-left-color: var(--tertiary-fixed-dim);
 }
 
 html.light .teaching-card.archived {
@@ -1118,6 +1183,18 @@ html.light .glow-sm {
   background: var(--surface-container-low);
   border: 1px solid rgba(70, 72, 77, 0.15);
   padding: 24px;
+}
+
+.data-card,
+.metric-cell,
+.terminal-card,
+.archive-post,
+.archive-side-card,
+.post-body,
+.projects-metrics-card,
+.projects-column,
+.projects-featured-asset {
+  background: var(--surface-container-low);
 }
 
 .metadata-header {
@@ -2378,17 +2455,29 @@ html.light .glow-sm {
 
 .terminal-card {
   background: var(--surface-container-low);
-  border: 1px solid rgba(70, 72, 77, 0.45);
+  border: 0;
+  border-left: 2px solid var(--primary-fixed-dim);
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
 }
 
 .terminal-card-head {
-  background: var(--surface-container-highest);
-  border-bottom: 1px solid rgba(70, 72, 77, 0.45);
-  padding: 8px 16px;
+  background: transparent;
+  border-bottom: 1px solid rgba(70, 72, 77, 0.28);
+  padding: 14px 24px 12px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.terminal-head-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.terminal-head-icon {
+  font-size: 16px;
+  color: var(--primary);
 }
 
 .terminal-lights {
@@ -2421,11 +2510,15 @@ html.light .glow-sm {
   font-family: "Space Mono", monospace;
   font-size: 10px;
   letter-spacing: 0.15em;
-  color: var(--on-surface-variant);
+  color: var(--on-surface);
 }
 
-.terminal-head-spacer {
-  width: 40px;
+.terminal-head-meta {
+  font-family: "Space Mono", monospace;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--outline);
 }
 
 .terminal-card-body {
@@ -3223,8 +3316,8 @@ html.light .glow-sm {
 
 .projects-metrics-card {
   background: var(--surface-container-low);
-  border-top: 1px solid rgba(170, 255, 220, 0.3);
-  border-left: 1px solid rgba(70, 72, 77, 0.25);
+  border: 0;
+  border-left: 2px solid var(--primary-fixed-dim);
   padding: 22px;
   display: flex;
   flex-direction: column;
@@ -3451,6 +3544,19 @@ html.light .glow-sm {
   opacity: 0;
   transform: translateY(20px) scale(0.99);
   animation: stackCardIn 0.66s cubic-bezier(0.16, 1, 0.3, 1) 0.12s forwards;
+}
+
+.metadata-panel,
+.data-card,
+.metric-cell,
+.terminal-card,
+.archive-post,
+.archive-side-card,
+.post-body,
+.projects-metrics-card,
+.projects-column,
+.projects-featured-asset {
+  background: var(--surface-container-low);
 }
 
 .projects-featured-asset.is-swapping {
