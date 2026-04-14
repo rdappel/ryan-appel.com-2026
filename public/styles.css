@@ -566,9 +566,6 @@ html.light .post-code {
   border: 1px solid rgba(187, 201, 207, 0.15);
   box-shadow: none;
 }
-  background: var(--surface-container-low);
-  padding-top: 18px;
-}
 
 html.light .branch-box {
   background: var(--surface-container);
