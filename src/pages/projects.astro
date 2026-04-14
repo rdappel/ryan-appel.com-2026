@@ -194,78 +194,78 @@ const projectPayload = Object.fromEntries(
 <script define:vars={{ projectPayload, initialSlug: initialProject.slug }}>
 	const cards = Array.from(
 		document.querySelectorAll('.projects-preview-card-btn[data-project-slug]'),
-	);
-	const featuredAssetEl = document.getElementById('project-featured-asset');
+	)
+	const featuredAssetEl = document.getElementById('project-featured-asset')
 
-	const featuredTagEl = document.getElementById('project-featured-tag');
-	const featuredTitleEl = document.getElementById('project-featured-title');
-	const featuredCopyEl = document.getElementById('project-featured-copy');
-	const featuredActionEl = document.getElementById('project-featured-action');
-	const featuredActionLabelEl = document.getElementById('project-featured-action-label');
+	const featuredTagEl = document.getElementById('project-featured-tag')
+	const featuredTitleEl = document.getElementById('project-featured-title')
+	const featuredCopyEl = document.getElementById('project-featured-copy')
+	const featuredActionEl = document.getElementById('project-featured-action')
+	const featuredActionLabelEl = document.getElementById('project-featured-action-label')
 
-	const metricsTitleEl = document.getElementById('project-metrics-title');
-	const metricRowsEl = document.getElementById('project-metric-rows');
+	const metricsTitleEl = document.getElementById('project-metrics-title')
+	const metricRowsEl = document.getElementById('project-metric-rows')
 
 	const replayFeaturedAnimation = () => {
-		if (!featuredAssetEl) return;
-		featuredAssetEl.classList.remove('is-swapping');
-		void featuredAssetEl.offsetWidth;
-		featuredAssetEl.classList.add('is-swapping');
-	};
+		if (!featuredAssetEl) return
+		featuredAssetEl.classList.remove('is-swapping')
+		void featuredAssetEl.offsetWidth
+		featuredAssetEl.classList.add('is-swapping')
+	}
 
 	const updateProjectView = (slug, shouldAnimate = true) => {
-		const project = projectPayload[slug];
-		if (!project) return;
+		const project = projectPayload[slug]
+		if (!project) return
 
-		if (featuredTagEl) featuredTagEl.textContent = project.featuredTag;
-		if (featuredTitleEl) featuredTitleEl.textContent = project.title;
-		if (featuredCopyEl) featuredCopyEl.textContent = project.description;
+		if (featuredTagEl) featuredTagEl.textContent = project.featuredTag
+		if (featuredTitleEl) featuredTitleEl.textContent = project.title
+		if (featuredCopyEl) featuredCopyEl.textContent = project.description
 
 		if (featuredActionEl) {
-			featuredActionEl.setAttribute('href', project.actionUrl || '#');
+			featuredActionEl.setAttribute('href', project.actionUrl || '#')
 		}
 
 		if (featuredActionLabelEl) {
-			featuredActionLabelEl.textContent = project.actionLabel;
+			featuredActionLabelEl.textContent = project.actionLabel
 		}
 
-		if (metricsTitleEl) metricsTitleEl.textContent = `SYSTEM_METRICS // ${project.title}`;
+		if (metricsTitleEl) metricsTitleEl.textContent = `SYSTEM_METRICS // ${project.title}`
 		if (metricRowsEl) {
-			metricRowsEl.innerHTML = '';
-			(project.metrics || []).forEach((item) => {
-				const colonIdx = item.indexOf(': ');
-				const label = colonIdx >= 0 ? item.slice(0, colonIdx).toUpperCase() : item.toUpperCase();
-				const value = colonIdx >= 0 ? item.slice(colonIdx + 2) : '';
-				const row = document.createElement('div');
-				row.className = 'projects-metric-row';
-				const labelSpan = document.createElement('span');
-				labelSpan.className = 'projects-metric-label';
-				labelSpan.textContent = label + ':';
-				const valueSpan = document.createElement('span');
-				valueSpan.className = 'projects-metric-value';
-				valueSpan.textContent = value;
-				row.appendChild(labelSpan);
-				row.appendChild(valueSpan);
-				metricRowsEl.appendChild(row);
-			});
+			metricRowsEl.innerHTML = ''
+			(project.metrics || []).forEach(item => {
+				const colonIdx = item.indexOf(': ')
+				const label = colonIdx >= 0 ? item.slice(0, colonIdx).toUpperCase() : item.toUpperCase()
+				const value = colonIdx >= 0 ? item.slice(colonIdx + 2) : ''
+				const row = document.createElement('div')
+				row.className = 'projects-metric-row'
+				const labelSpan = document.createElement('span')
+				labelSpan.className = 'projects-metric-label'
+				labelSpan.textContent = `${label}:`
+				const valueSpan = document.createElement('span')
+				valueSpan.className = 'projects-metric-value'
+				valueSpan.textContent = value
+				row.appendChild(labelSpan)
+				row.appendChild(valueSpan)
+				metricRowsEl.appendChild(row)
+			})
 		}
 
-		cards.forEach((card) => {
-			const isActive = card.getAttribute('data-project-slug') === slug;
-			card.classList.toggle('active', isActive);
-		});
+		cards.forEach(card => {
+			const isActive = card.getAttribute('data-project-slug') === slug
+			card.classList.toggle('active', isActive)
+		})
 
 		if (shouldAnimate) {
-			replayFeaturedAnimation();
+			replayFeaturedAnimation()
 		}
-	};
+	}
 
-	cards.forEach((card) => {
+	cards.forEach(card => {
 		card.addEventListener('click', () => {
-			const slug = card.getAttribute('data-project-slug');
-			if (slug) updateProjectView(slug, true);
-		});
-	});
+			const slug = card.getAttribute('data-project-slug')
+			if (slug) updateProjectView(slug, true)
+		})
+	})
 
-	updateProjectView(initialSlug, false);
+	updateProjectView(initialSlug, false)
 </script>

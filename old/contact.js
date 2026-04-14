@@ -1,19 +1,17 @@
-(function () {
-  var form = document.getElementById("contact-form");
-  var progressBar = document.getElementById("contact-progress-bar");
+(() => {
+	const form = document.getElementById('contact-form')
+	const progressBar = document.getElementById('contact-progress-bar')
 
-  if (!form || !progressBar) {
-    return;
-  }
+	if (!form || !progressBar) return
 
-  function replayProgressAnimation() {
-    progressBar.style.animation = "none";
-    progressBar.offsetHeight;
-    progressBar.style.animation = "contactSlide 1.9s linear 1 forwards";
-  }
+	const replayProgressAnimation = () => {
+		progressBar.style.animation = 'none'
+		void progressBar.offsetHeight
+		progressBar.style.animation = 'contactSlide 1.9s linear 1 forwards'
+	}
 
-  form.addEventListener("submit", function (event) {
-    event.preventDefault();
-    replayProgressAnimation();
-  });
-})();
+	form.addEventListener('submit', event => {
+		event.preventDefault()
+		replayProgressAnimation()
+	})
+})()

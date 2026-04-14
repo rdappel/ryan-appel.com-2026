@@ -1,9 +1,9 @@
 ---
-import Sidebar from '../components/Sidebar.astro';
-import Topbar from '../components/Topbar.astro';
-import Bottombar from '../components/Bottombar.astro';
+import Sidebar from '../components/Sidebar.astro'
+import Topbar from '../components/Topbar.astro'
+import Bottombar from '../components/Bottombar.astro'
 
-const { title, pageName = 'root' } = Astro.props;
+const { title, pageName = 'root' } = Astro.props
 ---
 
 <!doctype html>
@@ -18,31 +18,31 @@ const { title, pageName = 'root' } = Astro.props;
 		<title>{title}</title>
 		<script is:inline>
 			(() => {
-				const storageKey = 'theme-preference';
-				const root = document.documentElement;
+				const storageKey = 'theme-preference'
+				const root = document.documentElement
 
-				const supportsSystem = typeof window.matchMedia === 'function';
+				const supportsSystem = typeof window.matchMedia === 'function'
 				const systemDark = supportsSystem
 					? window.matchMedia('(prefers-color-scheme: dark)').matches
-					: true;
+					: true
 
-				let mode = 'system';
+				let mode = 'system'
 				try {
-					const stored = localStorage.getItem(storageKey);
+					const stored = localStorage.getItem(storageKey)
 					if (stored === 'light' || stored === 'dark' || stored === 'system') {
-						mode = stored;
+						mode = stored
 					}
 				} catch {
-					mode = 'system';
+					mode = 'system'
 				}
 
-				const resolved = mode === 'system' ? (systemDark ? 'dark' : 'light') : mode;
+				const resolved = mode === 'system' ? (systemDark ? 'dark' : 'light') : mode
 
-				root.classList.remove('light', 'dark');
-				root.classList.add(resolved);
-				root.setAttribute('data-theme-mode', mode);
-				root.setAttribute('data-theme-resolved', resolved);
-			})();
+				root.classList.remove('light', 'dark')
+				root.classList.add(resolved)
+				root.setAttribute('data-theme-mode', mode)
+				root.setAttribute('data-theme-resolved', resolved)
+			})()
 		</script>
 
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -71,7 +71,7 @@ const { title, pageName = 'root' } = Astro.props;
 		<script is:inline src="/theme-toggle.js"></script>
 		<script is:inline src="/archive-search.js"></script>
 		<script type="module" is:inline>
-			import '/scripts/components/demo/register-article-demos.js';
+			import '/scripts/components/demo/register-article-demos.js'
 		</script>
 	</body>
 </html>

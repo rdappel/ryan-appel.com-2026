@@ -1,9 +1,9 @@
 ---
 title: "Spatial Partitioning in a Shmup - Part 1: The Broad Phase"
-date: 2026-04-14
-time: 10:40
+date: 2026-04-13
+time: 10:40:31
 channel: GAME_DEV
-readTime: 7m
+readTime: 10m
 excerpt: "Why naive collision detection breaks down in shmups, and how a simple grid-based broad phase eliminates most unnecessary checks before they ever happen."
 ---
 
@@ -57,8 +57,8 @@ Seeing it makes it obvious:
 
 <broad-phase-comparison-demo
   ball-count="12"
-  sector-size="80">
-</broad-phase-comparison-demo>
+  sector-size="80"
+/>
 
 On the left, everything is connected. On the right, once space is divided up, those connections collapse into small, local groups. Same objects, same movement—just far less wasted work.
 
@@ -232,7 +232,7 @@ It’s easier to see than explain:
   min-radius="6"
   max-radius="18"
   sector-size="50">
-</sector-sizing-demo>
+/>
 
 There’s usually a sweet spot that lines up with the average size of your objects.
 
