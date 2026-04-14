@@ -102,7 +102,7 @@ export class CollisionAABBDemo extends CanvasDemoElement {
 			},
 			movable: {
 				position: clampBoxToCanvas({
-					position: vec(width * 0.76, height * 0.52),
+					position: vec(width * 0.76, height * 0.68),
 					half: movableHalf,
 					width,
 					height,

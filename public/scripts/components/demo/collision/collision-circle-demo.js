@@ -76,7 +76,7 @@ export class CollisionCircleDemo extends CanvasDemoElement {
 			},
 			movable: {
 				position: clampCircleToCanvas({
-					position: vec(width * 0.74, height * 0.55),
+					position: vec(width * 0.74, height * 0.68),
 					radius: movableRadius,
 					width,
 					height,

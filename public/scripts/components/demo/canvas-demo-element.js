@@ -10,6 +10,7 @@ export class CanvasDemoElement extends BaseDemoElement {
     this.lastTime = 0
     this.ctx = null
     this.$canvas = null
+    this.hasInitializedState = false
   }
 
   renderStage() {
@@ -21,11 +22,14 @@ export class CanvasDemoElement extends BaseDemoElement {
   connectedCallback() {
     super.connectedCallback()
     resizeCanvasToDisplaySize(this.$canvas)
+    if (!this.hasInitializedState) {
+      this.reset()
+      this.hasInitializedState = true
+    }
     this.handleResize()
   }
 
   afterMount() {
-    this.reset()
     this.start()
   }
 
