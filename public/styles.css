@@ -50,6 +50,8 @@
   --surface-container-lowest: #000000;
   --surface-container: #171a1f;
   --on-primary: #00654b;
+  --link: #67e8f9;
+  --link-visited: #86efac;
   --sidebar-width: 256px;
   --topbar-height: 64px;
   --bottombar-height: 32px;
@@ -108,6 +110,8 @@ html.light {
   --surface-container-lowest: #ffffff;
   --surface-container: #eceef0;
   --on-primary: #ffffff;
+  --link: #0b6f88;
+  --link-visited: #2f6d3f;
 }
 
 * {
@@ -127,6 +131,21 @@ body {
   font-family: "Inter", sans-serif;
   line-height: 1.4;
   transition: background-color 180ms ease, color 180ms ease;
+}
+
+:where(a) {
+  color: var(--link);
+  text-decoration-color: color-mix(in srgb, var(--link) 55%, transparent);
+}
+
+:where(a:visited) {
+  color: var(--link-visited);
+  text-decoration-color: color-mix(in srgb, var(--link-visited) 55%, transparent);
+}
+
+:where(a:hover),
+:where(a:focus-visible) {
+  text-decoration-color: currentColor;
 }
 
 ::selection {

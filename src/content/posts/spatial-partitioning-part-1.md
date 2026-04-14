@@ -254,4 +254,4 @@ That’s the entire job of the broad phase:
 
 Once you have a much smaller set of potential collisions, you still need to determine whether objects actually intersect.
 
-That’s what we’ll cover in Part 2.
+That’s what we’ll cover in [Part 2: The Narrow Phase](/archive/spatial-partitioning-part-2/).
