@@ -11,7 +11,23 @@ const posts = Object.entries(postFrontmatters)
 		const frontmatter = fm as Record<string, unknown>
 		const slug = path.split('/').pop()?.replace(/\.md$/, '') ?? ''
 		const title = String(frontmatter['title'] ?? '')
-		const date = String(frontmatter['date'] ?? '')
+		const dateValue = frontmatter['date']
+		const rawDate = dateValue instanceof Date
+			? dateValue.toISOString()
+			: String(dateValue ?? '')
+		const datePrefix = dateValue instanceof Date
+			? dateValue.toISOString().slice(0, 10)
+			: rawDate.split('T')[0]
+		const rawTime = String(frontmatter['time'] ?? '').trim()
+		const timeParts = rawTime.split(':').filter(Boolean)
+		const normalizedTime = timeParts.length === 2
+			? `${timeParts[0]}:${timeParts[1]}:00`
+			: timeParts.length === 3
+				? `${timeParts[0]}:${timeParts[1]}:${timeParts[2]}`
+				: ''
+		const timestamp = normalizedTime
+			? `${datePrefix}T${normalizedTime}.000Z`
+			: rawDate
 		const channel = String(frontmatter['channel'] ?? '')
 		const readTime = String(frontmatter['readTime'] ?? '')
 		const excerpt = String(frontmatter['excerpt'] ?? '')
@@ -19,14 +35,15 @@ const posts = Object.entries(postFrontmatters)
 		return {
 			slug,
 			title,
-			date,
+			timestamp,
 			channel,
 			readTime,
 			excerpt,
+			searchText: [title, timestamp, channel, readTime, excerpt].join(' ').toLowerCase(),
 		}
 	})
 	.filter(post => post.slug && post.title)
-	.sort((a, b) => b.date.localeCompare(a.date))
+	.sort((a, b) => b.timestamp.localeCompare(a.timestamp))
 
 const channels = [...new Set(posts.map(post => post.channel).filter(Boolean))]
 ---
@@ -51,21 +68,33 @@ const channels = [...new Set(posts.map(post => post.channel).filter(Boolean))]
 			</div>
 
 			<div class="archive-grid">
-				<section class="archive-feed">
+				<section class="archive-feed" data-archive-search-root>
 					{posts.map((post, index) => (
-						<article class="archive-post anim-fade-up" style={`--anim-delay: ${0.05 + index * 0.09}s;`}>
+						<article
+							class="archive-post anim-fade-up"
+							data-archive-post
+							data-search={post.searchText}
+							style={`--anim-delay: ${0.05 + index * 0.09}s;`}
+						>
 							<div class="archive-post-head">
-								<span class="archive-post-date">{post.date}</span>
-								<span class="archive-post-tag">{post.channel}</span>
+								<span class="archive-post-date" data-archive-field data-original-text={post.timestamp}>{post.timestamp}</span>
+								<span class="archive-post-tag" data-archive-field data-original-text={post.channel}>{post.channel}</span>
 							</div>
-							<h2 class="archive-post-title"><a href={`/archive/${post.slug}/`} class="archive-post-link">{post.title}</a></h2>
-							<p class="archive-post-excerpt">{post.excerpt}</p>
+							<h2 class="archive-post-title">
+								<a href={`/archive/${post.slug}/`} class="archive-post-link" data-archive-field data-original-text={post.title}>{post.title}</a>
+							</h2>
+							<p class="archive-post-excerpt" data-archive-field data-original-text={post.excerpt}>{post.excerpt}</p>
 							<div class="archive-post-foot">
-								<span class="archive-post-meta">READ_TIME: {post.readTime}</span>
+								<span class="archive-post-meta" data-archive-field data-original-text={`READ_TIME: ${post.readTime}`}>READ_TIME: {post.readTime}</span>
 								<a href={`/archive/${post.slug}/`} class="archive-post-btn">READ_ENTRY</a>
 							</div>
 						</article>
 					))}
+
+					<div class="archive-empty" data-archive-empty hidden>
+						<p class="archive-empty-title">NO_MATCHING_ENTRIES</p>
+						<p class="archive-empty-copy">Try a different title, keyword, channel, or date.</p>
+					</div>
 				</section>
 
 				<aside class="archive-side anim-fade-right" style="--anim-delay: 0.18s;">

@@ -67,6 +67,10 @@ const { title, pageName = 'root' } = Astro.props;
 
 		<script is:inline src="/clock.js"></script>
 		<script is:inline src="/theme-toggle.js"></script>
+		<script is:inline src="/archive-search.js"></script>
+		<script type="module" is:inline>
+			import '/scripts/components/demo/register-article-demos.js';
+		</script>
 	</body>
 </html>
 

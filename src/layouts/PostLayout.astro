@@ -2,6 +2,24 @@
 import Layout from './Layout.astro';
 
 const { frontmatter } = Astro.props;
+const postTime = typeof frontmatter.time === 'string'
+	? frontmatter.time.trim()
+	: ''
+const timeParts = postTime.split(':').filter(Boolean)
+const normalizedPostTime = timeParts.length === 2
+	? `${timeParts[0]}:${timeParts[1]}:00`
+	: timeParts.length === 3
+		? `${timeParts[0]}:${timeParts[1]}:${timeParts[2]}`
+		: postTime
+const rawDate = frontmatter.date instanceof Date
+	? frontmatter.date.toISOString()
+	: String(frontmatter.date ?? '')
+const datePrefix = frontmatter.date instanceof Date
+	? frontmatter.date.toISOString().slice(0, 10)
+	: rawDate.split('T')[0]
+const postTimestamp = normalizedPostTime
+	? `${datePrefix}T${normalizedPostTime}.000Z`
+	: rawDate
 ---
 
 <Layout title={`${frontmatter.title} // TERMINAL_CORE`} pageName="archive">
@@ -23,7 +41,7 @@ const { frontmatter } = Astro.props;
 				</h1>
 
 				<div class="post-meta-row">
-					<span class="post-meta-chip">{frontmatter.date}</span>
+					<span class="post-meta-chip">{postTimestamp}</span>
 					<span class="post-meta-chip">{frontmatter.channel}</span>
 					<span class="post-meta-chip">READ_TIME: {frontmatter.readTime}</span>
 				</div>
@@ -38,4 +56,5 @@ const { frontmatter } = Astro.props;
 			</section>
 		</article>
 	</main>
+
 </Layout>
