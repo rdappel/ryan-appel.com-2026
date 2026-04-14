@@ -229,8 +229,6 @@ It’s easier to see than explain:
 
 <sector-sizing-demo
   ball-count="24"
-  min-radius="6"
-  max-radius="18"
   sector-size="50">
 />
 

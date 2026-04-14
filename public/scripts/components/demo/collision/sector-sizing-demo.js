@@ -4,6 +4,9 @@ import { CanvasDemoElement } from '../canvas-demo-element.js'
 import { vec, add, scale, clamp, randomRange, pairKey } from '../utils/math.js'
 import { drawCircle, drawGrid, clear, drawText, drawLine } from '../utils/canvas.js'
 
+const DEFAULT_MIN_RADIUS = 6
+const DEFAULT_MAX_RADIUS = 18
+
 // ---------- helpers ----------
 
 const createBall = ({ width, height, minRadius, maxRadius }) => {
@@ -149,19 +152,11 @@ const drawPairs = (ctx, balls, pairs) => {
 
 export class SectorSizingDemo extends CanvasDemoElement {
   static get observedAttributes() {
-    return ['ball-count', 'min-radius', 'max-radius', 'sector-size']
+    return ['ball-count', 'sector-size']
   }
 
   get ballCount() {
     return this.getNumberAttr('ball-count', 24)
-  }
-
-  get minRadius() {
-    return this.getNumberAttr('min-radius', 6)
-  }
-
-  get maxRadius() {
-    return this.getNumberAttr('max-radius', 18)
   }
 
   get sectorSize() {
@@ -170,22 +165,6 @@ export class SectorSizingDemo extends CanvasDemoElement {
 
   renderControls() {
     this.$toolbar.innerHTML = ''
-
-    this.addRangeControl({
-      label: 'Min Radius',
-      attr: 'min-radius',
-      min: 4,
-      max: 24,
-      value: this.minRadius,
-    })
-
-    this.addRangeControl({
-      label: 'Max Radius',
-      attr: 'max-radius',
-      min: 6,
-      max: 32,
-      value: this.maxRadius,
-    })
 
     this.addRangeControl({
       label: 'Sector Size',
@@ -201,27 +180,17 @@ export class SectorSizingDemo extends CanvasDemoElement {
     this.$radiusStat = this.addStat('Ball radius avg: 0.0')
   }
 
-  normalizeRadiusBounds() {
-    const min = this.minRadius
-    const max = this.maxRadius
-
-    if (min <= max) return { min, max }
-
-    return { min: max, max: min }
-  }
-
   reset() {
     const width = this.$canvas.width || 900
     const height = this.$canvas.height || 420
-    const { min, max } = this.normalizeRadiusBounds()
 
     this.state = {
       balls: Array.from({ length: this.ballCount }, () =>
         createBall({
           width,
           height,
-          minRadius: min,
-          maxRadius: max,
+          minRadius: DEFAULT_MIN_RADIUS,
+          maxRadius: DEFAULT_MAX_RADIUS,
         })
       ),
       sectorMap: new Map(),
@@ -233,6 +202,31 @@ export class SectorSizingDemo extends CanvasDemoElement {
         averageBallRadius: 0,
       },
     }
+  }
+
+  onAttributesChanged() {
+    if (!this.state.balls) return
+
+    const nextCount = this.ballCount
+    const currentCount = this.state.balls.length
+    if (nextCount === currentCount) return
+
+    if (nextCount < currentCount) {
+      this.state.balls = this.state.balls.slice(0, nextCount)
+      return
+    }
+
+    const { width, height } = this.$canvas
+    const additions = Array.from({ length: nextCount - currentCount }, () =>
+      createBall({
+        width,
+        height,
+        minRadius: DEFAULT_MIN_RADIUS,
+        maxRadius: DEFAULT_MAX_RADIUS,
+      })
+    )
+
+    this.state.balls = [...this.state.balls, ...additions]
   }
 
   handleResize() {
@@ -249,39 +243,11 @@ export class SectorSizingDemo extends CanvasDemoElement {
     }))
   }
 
-  onAttributesChanged() {
-    const { min, max } = this.normalizeRadiusBounds()
-
-    if (this.getAttribute('min-radius') !== String(min)) {
-      this.setAttribute('min-radius', String(min))
-      return
-    }
-
-    if (this.getAttribute('max-radius') !== String(max)) {
-      this.setAttribute('max-radius', String(max))
-      return
-    }
-
-    this.reset()
-  }
-
   update(dt) {
     const { width, height } = this.$canvas
-    const { min, max } = this.normalizeRadiusBounds()
-
-    const balls = this.state.balls.map(ball => {
-      const clampedRadius = clamp(ball.radius, min, max)
-
-      return updateBall({
-        ball: {
-          ...ball,
-          radius: clampedRadius,
-        },
-        width,
-        height,
-        dt,
-      })
-    })
+    const balls = this.state.balls.map(ball =>
+      updateBall({ ball, width, height, dt })
+    )
 
     const sectorMap = getSectorMap({
       balls,
